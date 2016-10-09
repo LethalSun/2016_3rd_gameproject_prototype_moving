@@ -13,9 +13,12 @@ public:
 	void MoveUserClass(float dt);
 private:
 	Sprite *m_archBishop;
+	SpriteFrameCache *m_frame;
 	Animation *m_animation;
 	Animate *m_animate;
 	MoveBy *m_move;
+	Spawn *m_spawn;
+	char buffer[100];
 	int m_checkCurrentDirection;
 	//bool m_checkCurrentDirection[8];
 	
