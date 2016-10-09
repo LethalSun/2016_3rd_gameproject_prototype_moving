@@ -1,27 +1,89 @@
 #include "pch.h"
 #include "UserClass.h"
 
-
-
-UserClass::UserClass()
-	:m_checkCurrentDirection(1)
+Scene * UserClass::scene()
 {
-	
+	Scene* scene = Scene::create();
+	UserClass* layer = UserClass::create();
+	scene->addChild(layer);
+	return scene;
+}
+
+bool UserClass::init()
+{
+	if (!Node::init())
+	{
+		return false;
+	}
+
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("spriteArchBishop.plist");
+
+	m_archBishop = Sprite::createWithSpriteFrameName("stopFront.png");
+
+	m_archBishop->setPosition(Vec2(100, 100));
+	this->addChild(m_archBishop);
+
+	return true;
 }
 
 
-UserClass::~UserClass()
-{
-}
 
 void UserClass::SetDirection(const unsigned int &keyboardDirection)
 {
 	m_checkCurrentDirection = keyboardDirection;
 }
 
-void UserClass::MoveUserClass()
+void UserClass::MoveUserClass(float dt)
 {
-	//m_archBishop;
+	switch (m_checkCurrentDirection)
+	{
+		case UP_1200:
+		{
+			for (int i = 0; i < 8; i++)
+			{
+				auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(StringUtils::format("goBack%d.png", i + 1));
+				m_animation->addSpriteFrame(frame);
+			}
+
+			m_animate = Animate::create(m_animation);
+			m_move = MoveBy::create(dt, Vec2(0, 120));
+			m_archBishop->runAction(Spawn::create(m_animate, m_move));
+			
+			break;
+		}
+		case UP_RIGHT_0130:
+		{
+			break;
+		}
+		case LEFT_0300:
+		{
+			break;
+		}
+		case DOWN_RIGHT_0430:
+		{
+			break;
+		}
+		case DOWN_0600:
+		{
+			break;
+		}
+		case DOWN_LEFT_0730:
+		{
+			break;
+		}
+		case RIGHT_0900:
+		{
+			break;
+		}
+		case UP_LEFT_1030:
+		{
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
 }
 
 

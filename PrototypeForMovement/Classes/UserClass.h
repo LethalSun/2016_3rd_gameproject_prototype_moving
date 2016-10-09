@@ -2,15 +2,20 @@
 
 class KeyboardLayer;
 
-class UserClass //:public Layer
+class UserClass :public Node
 {
 public:
-	UserClass();
-	~UserClass();
+	
+	static cocos2d::Scene* scene();
+	virtual bool init();
+	CREATE_FUNC(UserClass);
 	void SetDirection(const unsigned int &keyboardDirection);
-	void MoveUserClass();
+	void MoveUserClass(float dt);
 private:
-	Sprite m_archBishop;
+	Sprite *m_archBishop;
+	Animation *m_animation;
+	Animate *m_animate;
+	MoveBy *m_move;
 	int m_checkCurrentDirection;
 	//bool m_checkCurrentDirection[8];
 	
@@ -30,7 +35,7 @@ private:
 		DOWN_RIGHT_0430 = 6,
 		LEFT_0300 = 8,
 		UP_LEFT_1030 = 9,
-		DOUN_LEFT_0730 = 10
+		DOWN_LEFT_0730 = 10
 		
 	};
 };

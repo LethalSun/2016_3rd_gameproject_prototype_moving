@@ -17,13 +17,8 @@ bool KeyboardLayer::init()
 	{
 		return false;
 	}
-
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("spriteArchBishop.plist");
-	
-	auto spr = Sprite::createWithSpriteFrameName("stopFront.png");
-
-	spr->setPosition(Vec2(100, 100));
-	this->addChild(spr);
+	m_archBishop = UserClass::create();
+	this->addChild(m_archBishop);
 
 	//m_archBishop.
 
@@ -94,7 +89,8 @@ unsigned int & KeyboardLayer::GetKeyboardInput()
 
 void KeyboardLayer::update(float delta) 
 {
-	//if()
-	//m_archBishop.SetDirection(GetKeyboardInput());
+	
+	m_archBishop->SetDirection(GetKeyboardInput());
+	m_archBishop->MoveUserClass(delta);
 }
 
