@@ -12,6 +12,7 @@ public:
 	void SetDirection(const unsigned int &keyboardDirection);
 	void MoveUserClass(float dt);
 private:
+	//애니메이션을 위한 멤버변수
 	Sprite *m_archBishop;
 	SpriteFrameCache *m_frame;
 	Animation *m_animation;
@@ -19,17 +20,12 @@ private:
 	MoveBy *m_move;
 	Spawn *m_spawn;
 	char buffer[100];
-	int m_checkCurrentDirection;
-	//bool m_checkCurrentDirection[8];
 	
-	enum directionIndex {
-		UP = 1,
-		DOWN = 2,
-		RIGHT = 4,
-		LEFT = 8
-	};
+	//방향변수
+	int m_currentDirection;
 
 	enum direction {
+		//앞은 키보드의 방향 뒤의 숫자는 캐릭터의 방향
 		NO = 0,
 		UP_1200 = 1,
 		DOWN_0600 = 2,

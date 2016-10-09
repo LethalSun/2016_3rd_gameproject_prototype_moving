@@ -30,12 +30,12 @@ bool UserClass::init()
 
 void UserClass::SetDirection(const unsigned int &keyboardDirection)
 {
-	m_checkCurrentDirection = keyboardDirection;
+	m_currentDirection = keyboardDirection;
 }
 
 void UserClass::MoveUserClass(float dt)
 {
-	switch (m_checkCurrentDirection)
+	switch (m_currentDirection)
 	{
 		case UP_1200:
 		{
@@ -89,64 +89,3 @@ void UserClass::MoveUserClass(float dt)
 		}
 	}
 }
-
-
-/*
-if (keyboardDirection[UP] == true
-&& keyboardDirection[DOWN] == false
-&& keyboardDirection[LEFT] == false
-&& keyboardDirection[RIGHT] == false)
-{
-m_checkCurrentDirection[] = { true, false, false, false, false, false, false, false };
-m_checkCurrentDirection[UP_1200] = true;
-}
-else if (keyboardDirection[UP] == false
-&& keyboardDirection[DOWN] == true
-&& keyboardDirection[LEFT] == false
-&& keyboardDirection[RIGHT] == false)
-{
-m_checkCurrentDirection[DOWN_0600] = true;
-}
-else if (keyboardDirection[UP] == false
-&& keyboardDirection[DOWN] == false
-&& keyboardDirection[LEFT] == true
-&& keyboardDirection[RIGHT] == false)
-{
-m_checkCurrentDirection[RIGHT_0900] = true;
-}
-else if (keyboardDirection[UP] == false
-&& keyboardDirection[DOWN] == false
-&& keyboardDirection[LEFT] == false
-&& keyboardDirection[RIGHT] == true)
-{
-m_checkCurrentDirection[RIGHT_0300] = true;
-}
-else if (keyboardDirection[UP] == false
-&& keyboardDirection[DOWN] == true
-&& keyboardDirection[LEFT] == false
-&& keyboardDirection[RIGHT] == false)
-{
-m_checkCurrentDirection[DOWN_0600] = true;
-}
-else if (keyboardDirection[UP] == false
-&& keyboardDirection[DOWN] == true
-&& keyboardDirection[LEFT] == false
-&& keyboardDirection[RIGHT] == false)
-{
-m_checkCurrentDirection[DOWN_0600] = true;
-}
-else if (keyboardDirection[UP] == false
-&& keyboardDirection[DOWN] == true
-&& keyboardDirection[LEFT] == false
-&& keyboardDirection[RIGHT] == false)
-{
-m_checkCurrentDirection[DOWN_0600] = true;
-}
-else if (keyboardDirection[UP] == false
-&& keyboardDirection[DOWN] == true
-&& keyboardDirection[LEFT] == false
-&& keyboardDirection[RIGHT] == false)
-{
-m_checkCurrentDirection[DOWN_0600] = true;
-}
-*/

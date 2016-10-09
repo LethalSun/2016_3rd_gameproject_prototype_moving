@@ -13,7 +13,7 @@ public:
 	virtual void update(float delta) override;
 	virtual void onKeyPressed(EventKeyboard::KeyCode keyCode, Event *event) override;
 	virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event *event) override;
-	unsigned int & GetKeyboardInput();
+	const unsigned int & GetKeyboardInput();
 private:
 
 	enum KeyboardArrow {

@@ -80,7 +80,7 @@ void KeyboardLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event * event)
 	}
 }
 
-unsigned int & KeyboardLayer::GetKeyboardInput()
+const unsigned int & KeyboardLayer::GetKeyboardInput()
 {
 	// TODO: insert return statement here
 	return m_keyboardArrow;
