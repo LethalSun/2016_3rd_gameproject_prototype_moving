@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
-
+#include "KeyboardLayer.h"
 
 static cocos2d::Size designResolutionSize = cocos2d::Size(1280, 720);
 static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
@@ -46,7 +46,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 
-    // turn on display FPS
     director->setDisplayStats(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
@@ -74,7 +73,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    auto scene = KeyboardLayer::createScene();
 
     // run
     director->runWithScene(scene);
