@@ -22,7 +22,7 @@ bool UserClass::init()
 
 	m_archBishop->setPosition(Vec2(100, 100));
 	this->addChild(m_archBishop);
-
+	this->scheduleUpdate();
 	return true;
 }
 
@@ -47,9 +47,10 @@ void UserClass::MoveUserClass(float dt)
 				auto frame = spriteCache->getSpriteFrameByName(buffer);
 				animFrame.pushBack(frame);
 			}
-			m_animation = Animation::createWithSpriteFrames(animFrame, dt);
+			m_animation = Animation::createWithSpriteFrames(animFrame, 0.1f);
 			m_animate = Animate::create(m_animation);
-			m_move = MoveBy::create(dt, Vec2(0, 10));
+			m_move = MoveBy::create(dt, Vec2(0, 10.f*dt));//setpositionÀ¸·Î ÇØ¾ßµÊ
+
 			m_spawn = Spawn::create(m_animate, m_move,NULL);
 			m_archBishop->runAction(m_spawn);
 			
