@@ -20,22 +20,31 @@ private:
 	MoveBy *m_move;
 	Spawn *m_spawn;
 	char buffer[100];
-	
+	void MakeAnimation();
 	//방향변수
 	int m_currentDirection;
+	int m_beforeDirection;
 
+	const int spriteFileNumber = 10;
+	const int PixelPerSecond = 100;
 	enum direction {
-		//앞은 키보드의 방향 뒤의 숫자는 캐릭터의 방향
-		NO = 0,
-		UP_1200 = 1,
-		DOWN_0600 = 2,
-		RIGHT_0900 = 4,
-		UP_RIGHT_0130 = 5,
-		DOWN_RIGHT_0430 = 6,
-		LEFT_0300 = 8,
-		UP_LEFT_1030 = 9,
-		DOWN_LEFT_0730 = 10
-		
+		NO_MOVE = 0,
+		TOP = 1,
+		BOTTOM = 2,
+		ERROR_INPUT1 = 3,
+		LEFT = 8,
+		TOP_RIGTH = 5,
+		BOTTOM_RIGHT = 6,
+		RIGHT = 4,
+		TOP_LEFT = 9,
+		BOTTOM_LEFT = 10,
+		ERROR_INPUT2 = 12,
+		ERROR_INPUT3=7,
+		ERROR_INPUT4=11,
+		ERROR_INPUT5=13,
+		ERROR_INPUT6 =14,
+		ERROR_INPUT7 =15,
 	};
+	int unitVec[2];
 };
 

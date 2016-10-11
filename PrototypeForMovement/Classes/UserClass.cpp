@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "UserClass.h"
 
+#include<string>
+
 Scene * UserClass::scene()
 {
 	Scene* scene = Scene::create();
@@ -18,7 +20,7 @@ bool UserClass::init()
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("spriteArchBishop.plist");
 
-	m_archBishop = Sprite::createWithSpriteFrameName("stopFront.png");
+	m_archBishop = Sprite::createWithSpriteFrameName("stopSprite2.png");
 
 	m_archBishop->setPosition(Vec2(100, 100));
 	this->addChild(m_archBishop);
@@ -31,62 +33,174 @@ bool UserClass::init()
 void UserClass::SetDirection(const unsigned int &keyboardDirection)
 {
 	m_currentDirection = keyboardDirection;
+	switch (m_currentDirection)
+	{
+	case TOP:
+	{
+		unitVec[0] = 0;
+		unitVec[1] = 1;
+		break;
+	}
+	case TOP_RIGTH:
+	{
+		unitVec[0] = 1;
+		unitVec[1] = 1;
+		break;
+	}
+	case RIGHT:
+	{
+		unitVec[0] = 1;
+		unitVec[1] = 0;
+		break;
+	}
+	case BOTTOM_RIGHT:
+	{
+		unitVec[0] = 1;
+		unitVec[1] = -1;
+		break;
+	}
+	case BOTTOM:
+	{
+		unitVec[0] = 0;
+		unitVec[1] = -1;
+		break;
+	}
+	case BOTTOM_LEFT:
+	{
+		unitVec[0] = -1;
+		unitVec[1] = -1;
+		break;
+	}
+	case LEFT:
+	{
+		unitVec[0] = -1;
+		unitVec[1] = 0;
+		break;
+	}
+	case TOP_LEFT:
+	{
+		unitVec[0] = -1;
+		unitVec[1] = 1;
+		break;
+	}
+	default:
+	{
+		unitVec[0] = 0;
+		unitVec[1] = 0;
+		m_archBishop->stopAllActions();
+		break;
+	}
+	}
 }
 
 void UserClass::MoveUserClass(float dt)
 {
-	switch (m_currentDirection)
-	{
-		case UP_1200:
-		{
-			auto spriteCache = SpriteFrameCache::getInstance();
-			Vector<SpriteFrame*> animFrame;
-			for (int i = 0; i < 8; i++)
-			{
-				sprintf(buffer, "goBack%d.png", (i + 1));
-				auto frame = spriteCache->getSpriteFrameByName(buffer);
-				animFrame.pushBack(frame);
-			}
-			m_animation = Animation::createWithSpriteFrames(animFrame, 0.1f);
-			m_animate = Animate::create(m_animation);
-			m_move = MoveBy::create(dt, Vec2(0, 10.f*dt));//setpositionÀ¸·Î ÇØ¾ßµÊ
+	MakeAnimation();
 
-			m_spawn = Spawn::create(m_animate, m_move,NULL);
-			m_archBishop->runAction(m_spawn);
-			
-			break;
-		}
-		case UP_RIGHT_0130:
-		{
-			break;
-		}
-		case LEFT_0300:
-		{
-			break;
-		}
-		case DOWN_RIGHT_0430:
-		{
-			break;
-		}
-		case DOWN_0600:
-		{
-			break;
-		}
-		case DOWN_LEFT_0730:
-		{
-			break;
-		}
-		case RIGHT_0900:
-		{
-			break;
-		}
-		case UP_LEFT_1030:
-		{
-			break;
-		}
-		default:
-		{
-			break;
-		}
-	}
+	auto currentposition = m_archBishop->getPosition();
+
+	m_archBishop->setPositionX(currentposition.x + 
+								(unitVec[0] * (PixelPerSecond)*dt));
+	m_archBishop->setPositionY(currentposition.y + 
+								(unitVec[1] * (PixelPerSecond)*dt));
+	auto currentDir = std::string{ "current dir : " };
+	currentDir.append( std::to_string( m_currentDirection));
+	if (m_currentDirection == 13)
+		int a = 0;
+	cocos2d::log(currentDir.c_str());
 }
+
+void UserClass::MakeAnimation()
+{
+
+	if (m_beforeDirection == m_currentDirection || 
+		m_currentDirection == ERROR_INPUT1		|| 
+		m_currentDirection == ERROR_INPUT2		|| 
+		m_currentDirection == ERROR_INPUT3		|| 
+		m_currentDirection == ERROR_INPUT4		|| 
+		m_currentDirection == ERROR_INPUT5		|| 
+		m_currentDirection == ERROR_INPUT6		|| 
+		m_currentDirection == ERROR_INPUT7)
+	{
+		//m_archBishop->stopAllActions();
+		return;
+	}
+
+	
+
+		
+	
+	
+	int imageStartNumber = m_currentDirection * spriteFileNumber;
+
+	m_archBishop->stopAllActions();
+
+
+	if (m_currentDirection == NO_MOVE )
+	{
+		m_archBishop->stopAllActions();
+		int stopImageNumber = m_beforeDirection % 10;
+		sprintf(buffer, "stopSprite%d.png", stopImageNumber);
+		m_archBishop->initWithSpriteFrameName(buffer);
+		//m_archBishop->setTexture(SpriteFrameCache::getInstance()->getSpriteFrameByName(buffer)->getTexture());
+		m_beforeDirection = m_currentDirection;
+		return;
+	}
+
+	//auto spriteCache = SpriteFrameCache::getInstance();
+
+	Vector<SpriteFrame*> animFrame;
+	for (int i = imageStartNumber; i < imageStartNumber + 8; i++)
+	{
+		sprintf(buffer, "moveSpright%d.png", i);
+		auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(buffer);
+		animFrame.pushBack(frame);
+	}
+	m_animation = Animation::createWithSpriteFrames(animFrame, 0.1f);
+	m_animate = Animate::create(m_animation);
+	m_archBishop->runAction(RepeatForever::create(m_animate));
+
+	m_beforeDirection = m_currentDirection;
+}
+
+/*
+switch (m_currentDirection)
+{
+case TOP:
+{
+break;
+}
+case TOP_RIGTH:
+{
+break;
+}
+case RIGHT:
+{
+break;
+}
+case BOTTOM_RIGHT:
+{
+break;
+}
+case BOTTOM:
+{
+break;
+}
+case BOTTOM_LEFT:
+{
+break;
+}
+case LEFT:
+{
+break;
+}
+case TOP_LEFT:
+{
+break;
+}
+default:
+{
+break;
+}
+}
+*/
