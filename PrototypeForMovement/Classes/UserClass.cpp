@@ -37,56 +37,56 @@ void UserClass::SetDirection(const unsigned int &keyboardDirection)
 	{
 	case TOP:
 	{
-		unitVec[0] = 0;
-		unitVec[1] = 1;
+		m_unitVec[0] = 0;
+		m_unitVec[1] = 1;
 		break;
 	}
 	case TOP_RIGTH:
 	{
-		unitVec[0] = 1;
-		unitVec[1] = 1;
+		m_unitVec[0] = 1;
+		m_unitVec[1] = 1;
 		break;
 	}
 	case RIGHT:
 	{
-		unitVec[0] = 1;
-		unitVec[1] = 0;
+		m_unitVec[0] = 1;
+		m_unitVec[1] = 0;
 		break;
 	}
 	case BOTTOM_RIGHT:
 	{
-		unitVec[0] = 1;
-		unitVec[1] = -1;
+		m_unitVec[0] = 1;
+		m_unitVec[1] = -1;
 		break;
 	}
 	case BOTTOM:
 	{
-		unitVec[0] = 0;
-		unitVec[1] = -1;
+		m_unitVec[0] = 0;
+		m_unitVec[1] = -1;
 		break;
 	}
 	case BOTTOM_LEFT:
 	{
-		unitVec[0] = -1;
-		unitVec[1] = -1;
+		m_unitVec[0] = -1;
+		m_unitVec[1] = -1;
 		break;
 	}
 	case LEFT:
 	{
-		unitVec[0] = -1;
-		unitVec[1] = 0;
+		m_unitVec[0] = -1;
+		m_unitVec[1] = 0;
 		break;
 	}
 	case TOP_LEFT:
 	{
-		unitVec[0] = -1;
-		unitVec[1] = 1;
+		m_unitVec[0] = -1;
+		m_unitVec[1] = 1;
 		break;
 	}
 	default:
 	{
-		unitVec[0] = 0;
-		unitVec[1] = 0;
+		m_unitVec[0] = 0;
+		m_unitVec[1] = 0;
 		m_archBishop->stopAllActions();
 		break;
 	}
@@ -100,11 +100,13 @@ void UserClass::MoveUserClass(float dt)
 	auto currentposition = m_archBishop->getPosition();
 
 	m_archBishop->setPositionX(currentposition.x + 
-								(unitVec[0] * (PixelPerSecond)*dt));
+								(m_unitVec[0] * (PIXEL_PER_SECOND)*dt));
 	m_archBishop->setPositionY(currentposition.y + 
-								(unitVec[1] * (PixelPerSecond)*dt));
+								(m_unitVec[1] * (PIXEL_PER_SECOND)*dt));
+
 	auto currentDir = std::string{ "current dir : " };
 	currentDir.append( std::to_string( m_currentDirection));
+	currentDir.append(std::to_string(m_beforeDirection));
 	if (m_currentDirection == 13)
 		int a = 0;
 	cocos2d::log(currentDir.c_str());
@@ -131,7 +133,7 @@ void UserClass::MakeAnimation()
 		
 	
 	
-	int imageStartNumber = m_currentDirection * spriteFileNumber;
+	int imageStartNumber = m_currentDirection * SPRITE_FILE_NUMBER;
 
 	m_archBishop->stopAllActions();
 

@@ -21,12 +21,13 @@ private:
 	Spawn *m_spawn;
 	char buffer[100];
 	void MakeAnimation();
+	const int SPRITE_FILE_NUMBER = 10;
 	//방향변수
 	int m_currentDirection;
 	int m_beforeDirection;
 
-	const int spriteFileNumber = 10;
-	const int PixelPerSecond = 100;
+	
+	const int PIXEL_PER_SECOND = 100;
 	enum direction {
 		NO_MOVE = 0,
 		TOP = 1,
@@ -45,6 +46,6 @@ private:
 		ERROR_INPUT6 =14,
 		ERROR_INPUT7 =15,
 	};
-	int unitVec[2];
+	int m_unitVec[2];
 };
 
