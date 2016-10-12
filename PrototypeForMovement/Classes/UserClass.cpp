@@ -20,10 +20,10 @@ bool UserClass::init()
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("spriteArchBishop.plist");
 
-	m_archBishop = Sprite::createWithSpriteFrameName("stopSprite2.png");
+	m_pArchBishop = Sprite::createWithSpriteFrameName("stopSprite2.png");
 
-	m_archBishop->setPosition(Vec2(100, 100));
-	this->addChild(m_archBishop);
+	m_pArchBishop->setPosition(Vec2(100, 100));
+	this->addChild(m_pArchBishop);
 	this->scheduleUpdate();
 	return true;
 }
@@ -87,7 +87,7 @@ void UserClass::SetDirection(const unsigned int &keyboardDirection)
 	{
 		m_unitVec[0] = 0;
 		m_unitVec[1] = 0;
-		m_archBishop->stopAllActions();
+		m_pArchBishop->stopAllActions();
 		break;
 	}
 	}
@@ -97,19 +97,21 @@ void UserClass::MoveUserClass(float dt)
 {
 	MakeAnimation();
 
-	auto currentposition = m_archBishop->getPosition();
+	auto currentposition = m_pArchBishop->getPosition();
 
-	m_archBishop->setPositionX(currentposition.x + 
-								(m_unitVec[0] * (PIXEL_PER_SECOND)*dt));
-	m_archBishop->setPositionY(currentposition.y + 
-								(m_unitVec[1] * (PIXEL_PER_SECOND)*dt));
+	auto deltaX = (m_unitVec[0] * (PIXEL_PER_SECOND)*dt);
+	auto deltaY = (m_unitVec[1] * (PIXEL_PER_SECOND)*dt);
 
+	m_pArchBishop->setPositionX(currentposition.x + deltaX);
+	m_pArchBishop->setPositionY(currentposition.y + deltaY);
+	/*
 	auto currentDir = std::string{ "current dir : " };
 	currentDir.append( std::to_string( m_currentDirection));
 	currentDir.append(std::to_string(m_beforeDirection));
 	if (m_currentDirection == 13)
 		int a = 0;
 	cocos2d::log(currentDir.c_str());
+	*/
 }
 
 void UserClass::MakeAnimation()
@@ -135,15 +137,15 @@ void UserClass::MakeAnimation()
 	
 	int imageStartNumber = m_currentDirection * SPRITE_FILE_NUMBER;
 
-	m_archBishop->stopAllActions();
+	m_pArchBishop->stopAllActions();
 
 
 	if (m_currentDirection == NO_MOVE )
 	{
-		m_archBishop->stopAllActions();
+		m_pArchBishop->stopAllActions();
 		int stopImageNumber = m_beforeDirection % 10;
-		sprintf(buffer, "stopSprite%d.png", stopImageNumber);
-		m_archBishop->initWithSpriteFrameName(buffer);
+		sprintf(m_buffer, "stopSprite%d.png", stopImageNumber);
+		m_pArchBishop->initWithSpriteFrameName(m_buffer);
 		//m_archBishop->setTexture(SpriteFrameCache::getInstance()->getSpriteFrameByName(buffer)->getTexture());
 		m_beforeDirection = m_currentDirection;
 		return;
@@ -154,13 +156,13 @@ void UserClass::MakeAnimation()
 	Vector<SpriteFrame*> animFrame;
 	for (int i = imageStartNumber; i < imageStartNumber + 8; i++)
 	{
-		sprintf(buffer, "moveSpright%d.png", i);
-		auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(buffer);
+		sprintf(m_buffer, "moveSpright%d.png", i);
+		auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_buffer);
 		animFrame.pushBack(frame);
 	}
-	m_animation = Animation::createWithSpriteFrames(animFrame, 0.1f);
-	m_animate = Animate::create(m_animation);
-	m_archBishop->runAction(RepeatForever::create(m_animate));
+	m_pAnimation = Animation::createWithSpriteFrames(animFrame, 0.1f);
+	m_pAnimate = Animate::create(m_pAnimation);
+	m_pArchBishop->runAction(RepeatForever::create(m_pAnimate));
 
 	m_beforeDirection = m_currentDirection;
 }

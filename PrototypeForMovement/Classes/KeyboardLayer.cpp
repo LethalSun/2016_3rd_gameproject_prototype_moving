@@ -37,22 +37,22 @@ void KeyboardLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event * event)
 {
 	if (keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW)
 	{
-		m_keyboardArrow = m_keyboardArrow | KeyboardArrow::UP;
+		m_keyboardArrow |= KEY_BOARD_ARROW::UP;
 	}
 
-	if (keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW)
+	else if (keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW)
 	{
-		m_keyboardArrow = m_keyboardArrow | KeyboardArrow::DOWN;
+		m_keyboardArrow |= KEY_BOARD_ARROW::DOWN;
 	}
 
-	if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
+	else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
 	{
-		m_keyboardArrow = m_keyboardArrow | KeyboardArrow::RIGHT;
+		m_keyboardArrow |= KEY_BOARD_ARROW::RIGHT;
 	}
 
-	if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+	else if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
 	{
-		m_keyboardArrow = m_keyboardArrow | KeyboardArrow::LEFT;
+		m_keyboardArrow |= KEY_BOARD_ARROW::LEFT;
 	}
 
 }
@@ -61,26 +61,28 @@ void KeyboardLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event * event)
 {
 	if (keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW)
 	{
-		m_keyboardArrow = m_keyboardArrow & (!KeyboardArrow::UP);
+		m_keyboardArrow &= (!KEY_BOARD_ARROW::UP);
 	}
 
-	if (keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW)
+	else if (keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW)
 	{
-		m_keyboardArrow = m_keyboardArrow & (!KeyboardArrow::DOWN);
+		m_keyboardArrow &= (!KEY_BOARD_ARROW::DOWN);
 	}
 
-	if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
+	else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
 	{
-		m_keyboardArrow = m_keyboardArrow & (!KeyboardArrow::RIGHT);
+		m_keyboardArrow &= (!KEY_BOARD_ARROW::RIGHT);
 	}
 
-	if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+	else if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
 	{
-		m_keyboardArrow = m_keyboardArrow & (!KeyboardArrow::LEFT);
+		m_keyboardArrow &= (!KEY_BOARD_ARROW::LEFT);
 	}
+
+	
 }
 
-const unsigned int & KeyboardLayer::GetKeyboardInput()
+const unsigned int  KeyboardLayer::GetKeyboardInput()
 {
 	// TODO: insert return statement here
 	return m_keyboardArrow;
@@ -89,7 +91,9 @@ const unsigned int & KeyboardLayer::GetKeyboardInput()
 
 void KeyboardLayer::update(float delta) 
 {
-	
+	char logBuffer[100];
+	sprintf(logBuffer, "m_keyboardArrow:%d ", m_keyboardArrow);
+	cocos2d::log(logBuffer);
 	m_archBishop->SetDirection(GetKeyboardInput());
 	m_archBishop->MoveUserClass(delta);
 }
