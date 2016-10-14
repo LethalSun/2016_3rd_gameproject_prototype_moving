@@ -28,19 +28,19 @@ private:
 	const int SPRITE_FILE_NUMBER = 10;
 
 public:
-	
+
 	static cocos2d::Scene* scene();
 	virtual bool init();
 	CREATE_FUNC(UserClass);
-	void SetDirection(const unsigned int &keyboardDirection);
-	void MoveUserClass(float dt);
+	void    SetDirection(const unsigned int &keyboardDirection);
+	void    MoveUserClass(float dt);
 private:
 	//애니메이션을 위한 멤버변수
-	Sprite *m_pArchBishop;
+	Sprite           *m_pArchBishop;
 	SpriteFrameCache *m_pFrame;
-	Animation *m_pAnimation;
-	Animate *m_pAnimate;
-	char m_buffer[100];
+	Animation        *m_pAnimation;
+	Animate          *m_pAnimate;
+	char              m_buffer[100];
 	void MakeAnimation();
 
 	//방향변수
@@ -48,4 +48,3 @@ private:
 	int m_beforeDirection;
 	int m_unitVec[2];
 };
-

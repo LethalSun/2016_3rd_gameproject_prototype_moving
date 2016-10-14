@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "KeyboardLayer.h"
-#include "UserClass.h" 
+#include "UserClass.h"
 
 Scene* KeyboardLayer::createScene()
 {
@@ -19,8 +19,6 @@ bool KeyboardLayer::init()
 	}
 	m_archBishop = UserClass::create();
 	this->addChild(m_archBishop);
-
-	//m_archBishop.
 
 	auto eventListener = EventListenerKeyboard::create();
 
@@ -54,32 +52,29 @@ void KeyboardLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event * event)
 	{
 		m_keyboardArrow |= KEY_BOARD_ARROW::LEFT;
 	}
-
 }
 
 void KeyboardLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event * event)
 {
 	if (keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW)
 	{
-		m_keyboardArrow &= (!KEY_BOARD_ARROW::UP);
+		m_keyboardArrow &= ~(KEY_BOARD_ARROW::UP);
 	}
 
 	else if (keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW)
 	{
-		m_keyboardArrow &= (!KEY_BOARD_ARROW::DOWN);
+		m_keyboardArrow &= ~(KEY_BOARD_ARROW::DOWN);
 	}
 
 	else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
 	{
-		m_keyboardArrow &= (!KEY_BOARD_ARROW::RIGHT);
+		m_keyboardArrow &= ~(KEY_BOARD_ARROW::RIGHT);
 	}
 
 	else if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
 	{
-		m_keyboardArrow &= (!KEY_BOARD_ARROW::LEFT);
+		m_keyboardArrow &= ~(KEY_BOARD_ARROW::LEFT);
 	}
-
-	
 }
 
 const unsigned int  KeyboardLayer::GetKeyboardInput()
@@ -88,13 +83,17 @@ const unsigned int  KeyboardLayer::GetKeyboardInput()
 	return m_keyboardArrow;
 }
 
-
-void KeyboardLayer::update(float delta) 
+void KeyboardLayer::update(float delta)
 {
-	char logBuffer[100];
-	sprintf(logBuffer, "m_keyboardArrow:%d ", m_keyboardArrow);
-	cocos2d::log(logBuffer);
 	m_archBishop->SetDirection(GetKeyboardInput());
 	m_archBishop->MoveUserClass(delta);
 }
 
+/*
+char logBuffer1[100];
+sprintf(logBuffer1, "keyCode:%d ", keyCode);
+cocos2d::log(logBuffer1);
+char logBuffer2[100];
+sprintf(logBuffer2, "constkeycode:%d ", ~(KEY_BOARD_ARROW::LEFT));
+cocos2d::log(logBuffer2);
+*/

@@ -2,10 +2,11 @@
 
 class UserClass;
 
-class KeyboardLayer:public Layer
+class KeyboardLayer :public Layer
 {
 private:
-	enum KEY_BOARD_ARROW {
+	enum KEY_BOARD_ARROW
+	{
 		UP = 1,
 		DOWN = 2,
 		RIGHT = 4,
@@ -24,7 +25,5 @@ public:
 	const unsigned int  GetKeyboardInput();
 private:
 	unsigned int m_keyboardArrow;
-	//bool m_keyboardArrow[4];
 	UserClass *m_archBishop;
 };
-

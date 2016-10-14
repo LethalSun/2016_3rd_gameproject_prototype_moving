@@ -28,8 +28,6 @@ bool UserClass::init()
 	return true;
 }
 
-
-
 void UserClass::SetDirection(const unsigned int &keyboardDirection)
 {
 	m_currentDirection = keyboardDirection;
@@ -93,54 +91,24 @@ void UserClass::SetDirection(const unsigned int &keyboardDirection)
 	}
 }
 
-void UserClass::MoveUserClass(float dt)
-{
-	MakeAnimation();
-
-	auto currentposition = m_pArchBishop->getPosition();
-
-	auto deltaX = (m_unitVec[0] * (PIXEL_PER_SECOND)*dt);
-	auto deltaY = (m_unitVec[1] * (PIXEL_PER_SECOND)*dt);
-
-	m_pArchBishop->setPositionX(currentposition.x + deltaX);
-	m_pArchBishop->setPositionY(currentposition.y + deltaY);
-	/*
-	auto currentDir = std::string{ "current dir : " };
-	currentDir.append( std::to_string( m_currentDirection));
-	currentDir.append(std::to_string(m_beforeDirection));
-	if (m_currentDirection == 13)
-		int a = 0;
-	cocos2d::log(currentDir.c_str());
-	*/
-}
-
 void UserClass::MakeAnimation()
 {
-
-	if (m_beforeDirection == m_currentDirection || 
-		m_currentDirection == ERROR_INPUT1		|| 
-		m_currentDirection == ERROR_INPUT2		|| 
-		m_currentDirection == ERROR_INPUT3		|| 
-		m_currentDirection == ERROR_INPUT4		|| 
-		m_currentDirection == ERROR_INPUT5		|| 
-		m_currentDirection == ERROR_INPUT6		|| 
+	if (m_beforeDirection == m_currentDirection ||
+		m_currentDirection == ERROR_INPUT1 ||
+		m_currentDirection == ERROR_INPUT2 ||
+		m_currentDirection == ERROR_INPUT3 ||
+		m_currentDirection == ERROR_INPUT4 ||
+		m_currentDirection == ERROR_INPUT5 ||
+		m_currentDirection == ERROR_INPUT6 ||
 		m_currentDirection == ERROR_INPUT7)
 	{
 		//m_archBishop->stopAllActions();
 		return;
 	}
 
-	
-
-		
-	
-	
 	int imageStartNumber = m_currentDirection * SPRITE_FILE_NUMBER;
 
-	m_pArchBishop->stopAllActions();
-
-
-	if (m_currentDirection == NO_MOVE )
+	if (m_currentDirection == NO_MOVE)
 	{
 		m_pArchBishop->stopAllActions();
 		int stopImageNumber = m_beforeDirection % 10;
@@ -151,8 +119,7 @@ void UserClass::MakeAnimation()
 		return;
 	}
 
-	//auto spriteCache = SpriteFrameCache::getInstance();
-
+	m_pArchBishop->stopAllActions();
 	Vector<SpriteFrame*> animFrame;
 	for (int i = imageStartNumber; i < imageStartNumber + 8; i++)
 	{
@@ -167,44 +134,15 @@ void UserClass::MakeAnimation()
 	m_beforeDirection = m_currentDirection;
 }
 
-/*
-switch (m_currentDirection)
+void UserClass::MoveUserClass(float dt)
 {
-case TOP:
-{
-break;
+	MakeAnimation();
+
+	auto currentposition = m_pArchBishop->getPosition();
+
+	auto deltaX = (m_unitVec[0] * (PIXEL_PER_SECOND)*dt);
+	auto deltaY = (m_unitVec[1] * (PIXEL_PER_SECOND)*dt);
+
+	m_pArchBishop->setPositionX(currentposition.x + deltaX);
+	m_pArchBishop->setPositionY(currentposition.y + deltaY);
 }
-case TOP_RIGTH:
-{
-break;
-}
-case RIGHT:
-{
-break;
-}
-case BOTTOM_RIGHT:
-{
-break;
-}
-case BOTTOM:
-{
-break;
-}
-case BOTTOM_LEFT:
-{
-break;
-}
-case LEFT:
-{
-break;
-}
-case TOP_LEFT:
-{
-break;
-}
-default:
-{
-break;
-}
-}
-*/
