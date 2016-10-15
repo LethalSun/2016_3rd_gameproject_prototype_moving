@@ -18,6 +18,9 @@ bool UserClass::init()
 		return false;
 	}
 
+	int m_currentDirection = 0;
+	int m_beforeDirection = 0;
+	int m_unitVec[2]{ 0,0 };
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("spriteArchBishop.plist");
 
 	m_pArchBishop = Sprite::createWithSpriteFrameName("stopSprite2.png");

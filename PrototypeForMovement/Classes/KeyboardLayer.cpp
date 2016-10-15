@@ -17,6 +17,7 @@ bool KeyboardLayer::init()
 	{
 		return false;
 	}
+	m_keyboardArrow = 0;
 	m_archBishop = UserClass::create();
 	this->addChild(m_archBishop);
 
