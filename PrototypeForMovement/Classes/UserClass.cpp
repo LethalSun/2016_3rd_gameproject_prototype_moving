@@ -18,9 +18,12 @@ bool UserClass::init()
 		return false;
 	}
 
-	int m_currentDirection = 0;
-	int m_beforeDirection = 0;
-	int m_unitVec[2]{ 0,0 };
+	m_currentDirection = 0;
+	m_beforeDirection = 0;
+	m_unitVec[1] = { 0 };
+	m_unitVec[0] = { 0 };
+	amIMonster = 0;
+
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("spriteArchBishop.plist");
 
 	m_pArchBishop = Sprite::createWithSpriteFrameName("stopSprite2.png");
@@ -31,9 +34,27 @@ bool UserClass::init()
 	return true;
 }
 
-void UserClass::SetDirection(const unsigned int &keyboardDirection)
+void UserClass::InterpretKeyboardInput(const unsigned int & keyboardDirection)
 {
-	m_currentDirection = keyboardDirection;
+	m_currentDirection = keyboardDirection /*& GET_DIRECTION_BIT*/;
+	m_currentAction = keyboardDirection & GET_ACTION_BIT;
+}
+
+Vec4 UserClass::GetActionInfo()
+{
+	auto currentPosition = m_pArchBishop->getPosition();
+	auto xRange = m_unitVec[0] * ATTACK_RANGE_X;
+	auto yRange = m_unitVec[1] * ATTACK_RANGE_Y;
+	return Vec4(currentPosition.x, currentPosition.y, xRange, yRange);
+}
+
+void UserClass::IAmMonster()
+{
+	amIMonster = 1;
+}
+
+void UserClass::SetDirection()
+{
 	switch (m_currentDirection)
 	{
 	case TOP:
@@ -86,26 +107,18 @@ void UserClass::SetDirection(const unsigned int &keyboardDirection)
 	}
 	default:
 	{
+		m_currentDirection = NO_MOVE;
 		m_unitVec[0] = 0;
 		m_unitVec[1] = 0;
-		m_pArchBishop->stopAllActions();
 		break;
 	}
 	}
 }
 
-void UserClass::MakeAnimation()
+void UserClass::MakeMoveAnimation()
 {
-	if (m_beforeDirection == m_currentDirection ||
-		m_currentDirection == ERROR_INPUT1 ||
-		m_currentDirection == ERROR_INPUT2 ||
-		m_currentDirection == ERROR_INPUT3 ||
-		m_currentDirection == ERROR_INPUT4 ||
-		m_currentDirection == ERROR_INPUT5 ||
-		m_currentDirection == ERROR_INPUT6 ||
-		m_currentDirection == ERROR_INPUT7)
+	if (m_beforeDirection == m_currentDirection)
 	{
-		//m_archBishop->stopAllActions();
 		return;
 	}
 
@@ -130,22 +143,60 @@ void UserClass::MakeAnimation()
 		auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_buffer);
 		animFrame.pushBack(frame);
 	}
-	m_pAnimation = Animation::createWithSpriteFrames(animFrame, 0.1f);
+	m_pAnimation = Animation::createWithSpriteFrames(animFrame, ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
 	m_pArchBishop->runAction(RepeatForever::create(m_pAnimate));
 
 	m_beforeDirection = m_currentDirection;
 }
 
+void UserClass::MakeActionAnimation()
+{
+	int imageStartNumber = (m_currentAction | m_beforeDirection)* SPRITE_FILE_NUMBER;
+	char logBuffer1[100];
+	sprintf(logBuffer1, "keyCode: %d ,%d ,%d ", imageStartNumber, m_currentAction, m_beforeDirection);
+	cocos2d::log(logBuffer1);
+	if (imageStartNumber < 170)
+	{
+		return;
+	}
+	m_pArchBishop->stopAllActions();
+	Vector<SpriteFrame*> animFrame;
+	for (int i = imageStartNumber; i < imageStartNumber + 7; i++)
+	{
+		sprintf(m_buffer, "hit%d.png", i);
+		auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_buffer);
+		animFrame.pushBack(frame);
+	}
+	m_pAnimation = Animation::createWithSpriteFrames(animFrame, HIT_ANIMATION_SPEED);
+	m_pAnimate = Animate::create(m_pAnimation);
+	m_pArchBishop->runAction(m_pAnimate);
+
+	m_beforeAction = m_currentAction;
+}
+
 void UserClass::MoveUserClass(float dt)
 {
-	MakeAnimation();
+	if (amIMonster == 1)
+	{
+		return;
+	}
+	SetDirection();
 
-	auto currentposition = m_pArchBishop->getPosition();
+	if (m_currentAction == 0 && !(m_currentAction))
+	{
+		MakeMoveAnimation();
 
-	auto deltaX = (m_unitVec[0] * (PIXEL_PER_SECOND)*dt);
-	auto deltaY = (m_unitVec[1] * (PIXEL_PER_SECOND)*dt);
+		auto currentposition = m_pArchBishop->getPosition();
 
-	m_pArchBishop->setPositionX(currentposition.x + deltaX);
-	m_pArchBishop->setPositionY(currentposition.y + deltaY);
+		auto deltaX = (m_unitVec[0] * (PIXEL_PER_SECOND)*dt);
+		auto deltaY = (m_unitVec[1] * (PIXEL_PER_SECOND)*dt);
+
+		m_pArchBishop->setPositionX(currentposition.x + deltaX);
+		m_pArchBishop->setPositionY(currentposition.y + deltaY);
+	}
+	else
+	{
+		MakeActionAnimation();
+	}
 }

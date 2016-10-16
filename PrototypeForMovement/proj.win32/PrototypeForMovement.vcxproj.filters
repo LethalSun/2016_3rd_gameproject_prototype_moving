@@ -30,6 +30,9 @@
     <ClCompile Include="..\Classes\pch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\CharacterManage.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -48,6 +51,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\pch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CharacterManage.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
