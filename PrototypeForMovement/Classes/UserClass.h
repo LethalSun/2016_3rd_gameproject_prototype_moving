@@ -50,6 +50,7 @@ private:
 	SpriteFrameCache *m_pFrame;
 	Animation        *m_pAnimation;
 	Animate          *m_pAnimate;
+	bool m_isAnimationOn;
 	char              m_buffer[100];
 
 	//방향변수
@@ -62,4 +63,5 @@ private:
 	//애니메이션 함수
 	void MakeMoveAnimation();
 	void MakeActionAnimation();
+	void AnimationOn(bool isAnimationOn);
 };

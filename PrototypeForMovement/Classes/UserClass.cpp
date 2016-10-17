@@ -170,10 +170,20 @@ void UserClass::MakeActionAnimation()
 	}
 	m_pAnimation = Animation::createWithSpriteFrames(animFrame, HIT_ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
+	auto AnimationOn = CallFunc::create(CC_CALLBACK_0(UserClass::AnimationOn,this, true));
+	auto AnimationOff = CallFunc::create(CC_CALLBACK_0(UserClass::AnimationOn, this, false));
+	auto sequenceAnimation = Sequence::create(AnimationOn, m_pAnimate, AnimationOff,NULL);
 	m_pArchBishop->runAction(m_pAnimate);
 
 	m_beforeAction = m_currentAction;
 }
+
+void UserClass::AnimationOn(bool isAnimationOn)
+{
+	m_isAnimationOn = isAnimationOn;
+}
+
+
 
 void UserClass::MoveUserClass(float dt)
 {
