@@ -56,7 +56,7 @@ void KeyboardLayer::onKeyPressed(EventKeyboard::KeyCode keyCode, Event * event)
 		m_keyboardInput |= KEY_BOARD_INPUT::LEFT;
 	}
 
-	if (keyCode == EventKeyboard::KeyCode::KEY_A)
+	else if (keyCode == EventKeyboard::KeyCode::KEY_A)
 	{
 		m_keyboardInput |= KEY_BOARD_INPUT::A;
 	}
@@ -84,7 +84,7 @@ void KeyboardLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event * event)
 		m_keyboardInput &= ~(KEY_BOARD_INPUT::LEFT);
 	}
 
-	if (keyCode == EventKeyboard::KeyCode::KEY_A)
+	else if (keyCode == EventKeyboard::KeyCode::KEY_A)
 	{
 		m_keyboardInput &= ~(KEY_BOARD_INPUT::A);
 	}

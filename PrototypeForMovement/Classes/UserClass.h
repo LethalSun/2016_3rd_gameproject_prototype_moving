@@ -29,7 +29,7 @@ private:
 	const int PIXEL_PER_SECOND = 100;
 	const int SPRITE_FILE_NUMBER = 10;
 	const float ANIMATION_SPEED = 0.1f;
-	const float HIT_ANIMATION_SPEED = 0.1f;
+	const float HIT_ANIMATION_SPEED = 0.03f;
 	const int ATTACK_RANGE_X = 37;
 	const int ATTACK_RANGE_Y = 47;
 public:
@@ -50,18 +50,20 @@ private:
 	SpriteFrameCache *m_pFrame;
 	Animation        *m_pAnimation;
 	Animate          *m_pAnimate;
-	bool m_isAnimationOn;
+	int m_isAnimationOn;
 	char              m_buffer[100];
 
 	//방향변수
 	int m_currentDirection;
 	int m_beforeDirection;
 	int m_currentAction;
+	int m_attackDirection;
 	int m_beforeAction;
 	int m_unitVec[2];
 
 	//애니메이션 함수
 	void MakeMoveAnimation();
 	void MakeActionAnimation();
-	void AnimationOn(bool isAnimationOn);
+	void AnimationOn();
+	void AnimationOff();
 };
