@@ -52,3 +52,45 @@
 ###추신
 * 중간에 디버그 하는 부분이 있는데 이부분은 주변에서 알려 준거라서 공부가 필요 할것같습니다.
 * 각각의 방향을 누르면 잘 작동하지만 방향키 3개를 누르다가 3개중 한개의 키에서 손을 때면 움직이지 않습니다. 두개 일때도 마찬가지입니다. 
+
+##10월17
+###'UserClass.h'/'UserClass.cpp'
+* 자신이 몬스터인지 아닌지 설정하는 함수 추가
+```
+void UserClass::IAmMonster()
+{
+	amIMonster = 1;
+}
+```
+* 에러입력을 setDirection 함수의 디폴트 부분에서 모두 NO_MOVE로 바꿔주어서 에러처리를 간략화
+```
+...
+
+default:
+	{
+		m_currentDirection = NO_MOVE;
+		m_unitVec[0] = 0;
+		m_unitVec[1] = 0;
+		break;
+	}
+	}
+}
+```
+* 공격모션을 만들어내는 MakeActionAnimation() 함수 추가
+* 새로만든 CharacterManage클래스에 공격정보를 보내는 GetActionInfo() 함수 정의(구현중 일단 애니메이션부터 먼저)
+* 액션역시 비트연사자를 통해서 같은 변수에서 전달되기때문에 액션 비트와 움직임 비트를 추출하는 InterpretKeyboardInput(const unsigned int & keyboardDirection)함수 추가
+###'KeyBoardLayer.h'/'KeyBoardLayer.cpp'
+* 이전에 키를 때었을 때 움직임이 정지 하는 버그는 비트연산자'~'과 논리연산자 '!'를 착각해서 사용해서 생긴 문제였음 이부분을 수정함
+```
+	else if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+	{
+		m_keyboardInput &= ~(KEY_BOARD_INPUT::LEFT);
+	}
+```
+###'CharacterManage.h/'CharacterManage.ccp'
+* 새로만드는 클래스는 캐릭터의 공격범위를 받아서  그범위에 적이 있는지 확인해서 상호작용을 하게 해주려고 만든 클래스 인데 차라리 코코스의 물리엔진을 사용하는게 좋을것같다는 생각을 함 지금은 아직 애니메이션 구현중이기때문에 그냥 구현은 구체적이지 않음.
+###추신
+* 애니메이션을 구현했지만 좌우를 반대로 구현함.
+* 또 공격 모션도중 계속 움직이는 현상이 존재함 애니메이션 을 시퀀스로 구현해서 종료 표시를 해주는 방법으로 해결할수 있지 않을까? 라고 생각해봄
+##10월19
+###'UserClass.h'/'UserClass.cpp'
