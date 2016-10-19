@@ -29,7 +29,7 @@ private:
 	const int PIXEL_PER_SECOND = 100;
 	const int SPRITE_FILE_NUMBER = 10;
 	const float ANIMATION_SPEED = 0.1f;
-	const float HIT_ANIMATION_SPEED = 0.03f;
+	const float HIT_ANIMATION_SPEED = 0.1f;
 	const int ATTACK_RANGE_X = 37;
 	const int ATTACK_RANGE_Y = 47;
 public:
