@@ -8,6 +8,7 @@ void MakeAnimation::AnimationMove()
 {
 	m_Character->stopAllActions();
 	Vector<SpriteFrame*> animFrame;
+	int imageStartNumber = 0;
 	for (int i = imageStartNumber; i < imageStartNumber + 8; i++)
 	{
 		sprintf(m_buffer, "%s%d%s", m_FrameName,i,m_FileNameExtention);
@@ -17,7 +18,7 @@ void MakeAnimation::AnimationMove()
 	}
 	m_pAnimation = Animation::createWithSpriteFrames(animFrame, ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
-	m_pArchBishop->runAction(RepeatForever::create(m_pAnimate));
+	m_Character->runAction(RepeatForever::create(m_pAnimate));
 }
 
 void MakeAnimation::AnimationStop()
