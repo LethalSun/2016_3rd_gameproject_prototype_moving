@@ -9,6 +9,7 @@ void MakeAnimation::AnimationMove()
 	int imageStartNumber = 0;
 	m_Character->stopAllActions();
 	Vector<SpriteFrame*> animFrame;
+	int imageStartNumber = 0;
 	for (int i = imageStartNumber; i < imageStartNumber + 8; i++)
 	{
 		sprintf(m_buffer, "%s%d%s", m_FrameName, i, m_FileNameExtention);
