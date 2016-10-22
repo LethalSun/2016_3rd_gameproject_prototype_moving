@@ -155,6 +155,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\Classes\PrototypeScene.cpp" />
     <ClCompile Include="..\Classes\UserClass.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -162,10 +163,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\Character.h" />
     <ClInclude Include="..\Classes\CharacterManage.h" />
+    <ClInclude Include="..\Classes\EnumDefines.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\KeyboardLayer.h" />
     <ClInclude Include="..\Classes\MakeAnimation.h" />
     <ClInclude Include="..\Classes\pch.h" />
+    <ClInclude Include="..\Classes\PrototypeScene.h" />
     <ClInclude Include="..\Classes\UserClass.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
