@@ -13,7 +13,7 @@ namespace BE_IDCA_KEY_BOARD
 
 namespace BE_IDCA_ACTIONS
 {
-	enum direction {
+	enum ACTIONS {
 		NO_MOVE = 0,
 		TOP = 1,
 		BOTTOM = 2,
@@ -24,7 +24,7 @@ namespace BE_IDCA_ACTIONS
 		RIGHT = 4,
 		TOP_LEFT = 9,
 		BOTTOM_LEFT = 10,
-		GET_DIRECTION_BIT = 15,
+		DIRECTION_BIT = 15,
 		GET_ACTION_BIT = 240
 		//ERROR_INPUT2 = 12,
 		//ERROR_INPUT3 = 7,
@@ -44,4 +44,5 @@ namespace BE_IDCA_DEFINES
 	const int ATTACK_RANGE_Y = 47;
 	const char ARCH_BISHOP_FILE_NAME[] = "archbishop";
 	const char SPRITE_FRAME_FILE_EXTENTION[] = ".png";
+	const char PLIST_FILE_NAME[] = "spriteFrameIdca.plist";
 }

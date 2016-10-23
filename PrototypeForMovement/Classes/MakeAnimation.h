@@ -3,34 +3,25 @@
 class MakeAnimation
 {
 public:
-	Sequence* AnimationMove(int direction, int speed);
-	Texture2D* AnimationStop(int direction);
-	Sequence* AnimationAttack(int direction, int speed);
-	void AddSpriteFramesWithFile(char * filename);
+	//이동 애니메이션을 만들어 반환한다.
+	Animate* AnimationMove(int direction);
+	//정지상태의 텍스쳐를 반환한다.
+	Animate* AnimationStop(int direction);
+	//공격 애니메이션을 반환한다.
+	Animate* AnimationAttack(int direction);
 
 private:
+	//파일확장자
 	char m_FileNameExtention[10];
+	//파일이름
 	char m_FrameName[100];
+	//프레임을 불러올때 사용하는 버퍼
 	char m_Buffer[256];
-	bool m_AttackOn;
-	bool m_MoveOn;
-	Sprite *m_Character;
-	SpriteFrameCache *m_pFrame;
+
 	Animation        *m_pAnimation;
 	Animate          *m_pAnimate;
-
-	enum ANIMATION_STATE
-	{
-		STOP_ON = 0,
-		STOP_OFF = 1,
-		MOVE_ON = 2,
-		MOVE_OFF = 3,
-		ATTACK_ON = 4,
-		ATTACK_OFF = 5
-	};
-
-	void AttackAnimationEnd();
-	void MoveAnimationEnd();
+	//void AttackAnimationEnd();
+	//void MoveAnimationEnd();
 
 	MakeAnimation();
 	~MakeAnimation();

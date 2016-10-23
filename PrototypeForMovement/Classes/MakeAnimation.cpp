@@ -2,11 +2,8 @@
 #include "MakeAnimation.h"
 #include "EnumDefines.h"
 
-const float ANIMATION_SPEED = 0.1f;
-const float HIT_ANIMATION_SPEED = 0.1f;
-
 //이동 애니메이션을 만들어 반환한다.
-Sequence* MakeAnimation::AnimationMove(int direction, int speed)
+Animate* MakeAnimation::AnimationMove(int direction)
 {
 	int imageStartNumber = direction * BE_IDCA_DEFINES::NUM_OF_SPRITE_FILE_PER_ACTIONS;
 	Vector<SpriteFrame*> animFrame;
@@ -17,30 +14,29 @@ Sequence* MakeAnimation::AnimationMove(int direction, int speed)
 		auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_Buffer);
 		animFrame.pushBack(frame);
 	}
-	m_pAnimation = Animation::createWithSpriteFrames(animFrame, ANIMATION_SPEED);
+	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BE_IDCA_DEFINES::ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
-	auto AnimationOff = CallFunc::create(CC_CALLBACK_0(MakeAnimation::MoveAnimationEnd, this));
-	auto sequenceAnimation = Sequence::create(m_pAnimate, AnimationOff, NULL);
-	return sequenceAnimation;
+	//auto AnimationOff = CallFunc::create(CC_CALLBACK_0(MakeAnimation::MoveAnimationEnd, this));
+	//auto sequenceAnimation = Sequence::create(m_pAnimate, AnimationOff, NULL);
+	return m_pAnimate;
 }
 
 //정지상태의 텍스쳐를 반환한다.
-Texture2D* MakeAnimation::AnimationStop(int direction)
+Animate* MakeAnimation::AnimationStop(int direction)
 {
-	//int imageStartNumber = direction * BE_IDCA_DEFINES::NUM_OF_SPRITE_FILE_PER_ACTIONS;
-	//Vector<SpriteFrame*> animFrame;
-
-	//sprintf(m_Buffer, "%sstop%d%s", m_FrameName, direction, m_FileNameExtention);
-	//auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_Buffer);
-	//animFrame.pushBack(frame);
-	//m_pAnimation = Animation::createWithSpriteFrames(animFrame, ANIMATION_SPEED);
-	//m_pAnimate = Animate::create(m_pAnimation);
+	int imageStartNumber = direction * BE_IDCA_DEFINES::NUM_OF_SPRITE_FILE_PER_ACTIONS;
+	Vector<SpriteFrame*> animFrame;
 	sprintf(m_Buffer, "%sstop%d%s", m_FrameName, direction, m_FileNameExtention);
-	return SpriteFrameCache::getInstance()->getSpriteFrameByName(m_Buffer)->getTexture();
+	auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_Buffer);
+	animFrame.pushBack(frame);
+	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BE_IDCA_DEFINES::ANIMATION_SPEED);
+	m_pAnimate = Animate::create(m_pAnimation);
+	//sprintf(m_Buffer, "%sstop%d%s", m_FrameName, direction, m_FileNameExtention);
+	return m_pAnimate;
 }
 
 //공격 애니메이션을 반환한다.
-Sequence* MakeAnimation::AnimationAttack(int direction, int speed)
+Animate* MakeAnimation::AnimationAttack(int direction)
 {
 	int imageStartNumber = direction * BE_IDCA_DEFINES::NUM_OF_SPRITE_FILE_PER_ACTIONS;
 
@@ -57,25 +53,20 @@ Sequence* MakeAnimation::AnimationAttack(int direction, int speed)
 		animFrame.pushBack(frame);
 	}
 
-	m_pAnimation = Animation::createWithSpriteFrames(animFrame, HIT_ANIMATION_SPEED);
+	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BE_IDCA_DEFINES::HIT_ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
-	auto AnimationOff = CallFunc::create(CC_CALLBACK_0(MakeAnimation::AttackAnimationEnd, this));
-	auto sequenceAnimation = Sequence::create(m_pAnimate, AnimationOff, NULL);
+	//auto AnimationOff = CallFunc::create(CC_CALLBACK_0(MakeAnimation::AttackAnimationEnd, this));
+//	auto sequenceAnimation = Sequence::create(m_pAnimate, AnimationOff, NULL);
 
-	return sequenceAnimation;
+	return m_pAnimate;
 }
 
-void MakeAnimation::AddSpriteFramesWithFile(char * filename)
-{
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(filename);
-}
-
-void MakeAnimation::AttackAnimationEnd()
-{
-	m_AttackOn = false;
-}
-
-void MakeAnimation::MoveAnimationEnd()
-{
-	m_MoveOn = false;
-}
+//void MakeAnimation::AttackAnimationEnd()
+//{
+//	m_AttackOn = false;
+//}
+//
+//void MakeAnimation::MoveAnimationEnd()
+//{
+//	m_MoveOn = false;
+//}
