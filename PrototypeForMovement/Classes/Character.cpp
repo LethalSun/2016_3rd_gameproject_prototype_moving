@@ -2,6 +2,7 @@
 #include "Character.h"
 #include "MakeAnimation.h"
 #include "EnumDefines.h"
+#include <bitset>
 Character::Character()
 {
 }
