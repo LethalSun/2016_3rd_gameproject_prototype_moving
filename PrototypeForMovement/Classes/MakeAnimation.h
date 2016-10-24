@@ -13,7 +13,7 @@ public:
 	//공격 애니메이션을 반환한다.
 	Animate* AnimationAttack(int direction);
 	MakeAnimation(const char const *fileName, const char const * fileNameExtention);
-	~MakeAnimation();
+	~MakeAnimation() {};
 private:
 	//파일확장자
 	char m_FileNameExtention[10];

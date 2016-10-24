@@ -2,6 +2,7 @@
 #include "PrototypeScene.h"
 #include "Character.h"
 #include "EnumDefines.h"
+#include <bitset>
 
 Scene * PrototypeScene::createScene()
 {
