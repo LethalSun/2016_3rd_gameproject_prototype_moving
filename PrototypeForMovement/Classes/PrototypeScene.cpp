@@ -71,7 +71,7 @@ void PrototypeScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event * event)
 	}
 
 	char buffer[256];
-	sprintf(buffer, "input: %d", m_keyboardInput);
+	sprintf(buffer, "inputKeyboard: %d", m_keyboardInput);
 	cocos2d::log(buffer);
 }
 

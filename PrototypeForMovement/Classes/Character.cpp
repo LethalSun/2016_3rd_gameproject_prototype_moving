@@ -32,6 +32,18 @@ void Character::initOptions(const char const* filename, const char const* extent
 {
 	this->scheduleUpdate();
 	m_pMakeAnimation = new MakeAnimation(BE_IDCA_DEFINES::ARCH_BISHOP_FILE_NAME, BE_IDCA_DEFINES::SPRITE_FRAME_FILE_EXTENTION);
+	//공격,이동,정지 상태를 나타내는 변수 초기화
+	m_IsActionState = false;
+	m_IsMoveState = false;
+	m_IsStopState = true;
+	//입력플래그를 처리하기 위한 변수 초기화
+	m_Input = 0;
+	m_ActionInput = 0;
+	m_MoveInput = 0;
+	m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::NO_MOVE;
+	m_BeforeDirection = BE_IDCA_ACTIONS::ACTIONS::NO_MOVE;
+	m_UnitVector[0] = 0;
+	m_UnitVector[1] = 0;
 	//this->addChild(m_pMakeAnimation);
 }
 //키보드 입력비트 플래그를 액션부분과,움직임부분으로 나누고 방향을 설정해 준다. 정지시에 사용할 이전 방향에 대한 처리도 같이함.
@@ -46,6 +58,7 @@ void Character::SetInput(int inputFromScene)
 	{
 		m_UnitVector[0] = 0;
 		m_UnitVector[1] = 1;
+		m_BeforeDirection = m_CurDirection;
 		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::TOP;
 		break;
 	}
@@ -53,6 +66,7 @@ void Character::SetInput(int inputFromScene)
 	{
 		m_UnitVector[0] = 1;
 		m_UnitVector[1] = 1;
+		m_BeforeDirection = m_CurDirection;
 		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::TOP_RIGTH;
 		break;
 	}
@@ -60,6 +74,7 @@ void Character::SetInput(int inputFromScene)
 	{
 		m_UnitVector[0] = 1;
 		m_UnitVector[1] = 0;
+		m_BeforeDirection = m_CurDirection;
 		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::RIGHT;
 		break;
 	}
@@ -67,6 +82,7 @@ void Character::SetInput(int inputFromScene)
 	{
 		m_UnitVector[0] = 1;
 		m_UnitVector[1] = -1;
+		m_BeforeDirection = m_CurDirection;
 		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::BOTTOM_RIGHT;
 		break;
 	}
@@ -74,6 +90,7 @@ void Character::SetInput(int inputFromScene)
 	{
 		m_UnitVector[0] = 0;
 		m_UnitVector[1] = -1;
+		m_BeforeDirection = m_CurDirection;
 		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::BOTTOM;
 		break;
 	}
@@ -81,6 +98,7 @@ void Character::SetInput(int inputFromScene)
 	{
 		m_UnitVector[0] = -1;
 		m_UnitVector[1] = -1;
+		m_BeforeDirection = m_CurDirection;
 		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::BOTTOM_LEFT;
 		break;
 	}
@@ -88,6 +106,7 @@ void Character::SetInput(int inputFromScene)
 	{
 		m_UnitVector[0] = -1;
 		m_UnitVector[1] = 0;
+		m_BeforeDirection = m_CurDirection;
 		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::LEFT;
 		break;
 	}
@@ -95,25 +114,27 @@ void Character::SetInput(int inputFromScene)
 	{
 		m_UnitVector[0] = -1;
 		m_UnitVector[1] = 1;
+		m_BeforeDirection = m_CurDirection;
 		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::TOP_LEFT;
 		break;
 	}
 	default:
-	{	m_MoveInput = BE_IDCA_ACTIONS::ACTIONS::NO_MOVE;
-	m_CurDirection = m_BeforeDirection;
-	m_UnitVector[0] = 0;
-	m_UnitVector[1] = 0;
-	break;
+	{
+		m_MoveInput = BE_IDCA_ACTIONS::ACTIONS::NO_MOVE;
+		m_CurDirection = m_BeforeDirection;
+		m_UnitVector[0] = 0;
+		m_UnitVector[1] = 0;
+		break;
 	}
 	}
 	char buffer[256];
-	sprintf(buffer, "input1: %d", m_CurDirection);
+	sprintf(buffer, "inputCharacter: %d,%d", m_CurDirection, m_MoveInput);
 	cocos2d::log(buffer);
 }
 //입력에 따라서 현재의 상태를 파악한다.
 void Character::CheckCharacterState()
 {
-	if ((m_IsActionState == false) && (!(m_ActionInput)))
+	if ((m_IsActionState == false) && (m_ActionInput != 0))
 	{
 		m_IsActionState = true;
 		m_IsMoveState = false;
@@ -182,11 +203,11 @@ void Character::update(float dt)
 	{
 		Attack(dt);
 	}
-	if (m_IsMoveState == true)
+	else if (m_IsMoveState == true)
 	{
 		Move(dt);
 	}
-	if (m_IsStopState == true)
+	else if (m_IsStopState == true)
 	{
 		Stop(dt);
 	}

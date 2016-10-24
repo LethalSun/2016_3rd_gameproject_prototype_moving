@@ -77,6 +77,10 @@ MakeAnimation::MakeAnimation(const char const *fileName, const char const * file
 	sprintf(m_FrameName, "%s", fileName);
 }
 
+MakeAnimation::~MakeAnimation()
+{
+}
+
 //void MakeAnimation::AttackAnimationEnd()
 //{
 //	m_AttackOn = false;
