@@ -2,6 +2,16 @@
 #include "MakeAnimation.h"
 #include "EnumDefines.h"
 
+//bool MakeAnimation::init()
+//{
+//	if (!Node::init())
+//	{
+//		return false;
+//	}
+//
+//	return true;
+//}
+//
 //이동 애니메이션을 만들어 반환한다.
 Animate* MakeAnimation::AnimationMove(int direction)
 {
@@ -24,7 +34,7 @@ Animate* MakeAnimation::AnimationMove(int direction)
 //정지상태의 텍스쳐를 반환한다.
 Animate* MakeAnimation::AnimationStop(int direction)
 {
-	int imageStartNumber = direction * BE_IDCA_DEFINES::NUM_OF_SPRITE_FILE_PER_ACTIONS;
+	int imageStartNumber = direction;
 	Vector<SpriteFrame*> animFrame;
 	sprintf(m_Buffer, "%sstop%d%s", m_FrameName, direction, m_FileNameExtention);
 	auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_Buffer);
@@ -38,11 +48,11 @@ Animate* MakeAnimation::AnimationStop(int direction)
 //공격 애니메이션을 반환한다.
 Animate* MakeAnimation::AnimationAttack(int direction)
 {
-	int imageStartNumber = direction * BE_IDCA_DEFINES::NUM_OF_SPRITE_FILE_PER_ACTIONS;
+	int imageStartNumber = (direction | BE_IDCA_ACTIONS::ACTIONS::ATTACK) * BE_IDCA_DEFINES::NUM_OF_SPRITE_FILE_PER_ACTIONS;
 
 	if (imageStartNumber < 170)
 	{
-		return;
+		return nullptr;
 	}
 
 	Vector<SpriteFrame*> animFrame;
@@ -59,6 +69,12 @@ Animate* MakeAnimation::AnimationAttack(int direction)
 //	auto sequenceAnimation = Sequence::create(m_pAnimate, AnimationOff, NULL);
 
 	return m_pAnimate;
+}
+
+MakeAnimation::MakeAnimation(const char const *fileName, const char const * fileNameExtention)
+{
+	sprintf(m_FileNameExtention, "%s", fileNameExtention);
+	sprintf(m_FrameName, "%s", fileName);
 }
 
 //void MakeAnimation::AttackAnimationEnd()

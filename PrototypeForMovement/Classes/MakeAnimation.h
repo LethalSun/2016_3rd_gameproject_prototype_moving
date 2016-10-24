@@ -1,15 +1,19 @@
 #pragma once
 
-class MakeAnimation
+class MakeAnimation //:public Node
 {
 public:
+
+	//virtual bool init();
+	//CREATE_FUNC(MakeAnimation);
 	//이동 애니메이션을 만들어 반환한다.
 	Animate* AnimationMove(int direction);
 	//정지상태의 텍스쳐를 반환한다.
 	Animate* AnimationStop(int direction);
 	//공격 애니메이션을 반환한다.
 	Animate* AnimationAttack(int direction);
-
+	MakeAnimation(const char const *fileName, const char const * fileNameExtention);
+	~MakeAnimation();
 private:
 	//파일확장자
 	char m_FileNameExtention[10];
@@ -22,7 +26,4 @@ private:
 	Animate          *m_pAnimate;
 	//void AttackAnimationEnd();
 	//void MoveAnimationEnd();
-
-	MakeAnimation();
-	~MakeAnimation();
 };

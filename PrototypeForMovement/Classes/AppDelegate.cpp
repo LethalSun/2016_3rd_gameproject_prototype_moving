@@ -2,7 +2,7 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 #include "KeyboardLayer.h"
-
+#include "PrototypeScene.h"
 static cocos2d::Size designResolutionSize = cocos2d::Size(1280, 720);
 static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
 static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
@@ -73,7 +73,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	register_all_packages();
 
 	// create a scene. it's an autorelease object
-	auto scene = KeyboardLayer::createScene();
+	auto scene = PrototypeScene::createScene();
 
 	// run
 	director->runWithScene(scene);

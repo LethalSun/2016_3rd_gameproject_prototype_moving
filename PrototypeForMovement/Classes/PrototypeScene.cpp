@@ -3,7 +3,7 @@
 #include "Character.h"
 #include "EnumDefines.h"
 
-Scene * PrototypeScene::scene()
+Scene * PrototypeScene::createScene()
 {
 	auto scene = Scene::createWithPhysics();
 	auto layer = PrototypeScene::create();
@@ -21,10 +21,9 @@ bool PrototypeScene::init()
 	//변수 초기화
 	m_keyboardInput = 0;
 	//캐릭터 애드차일드
-	m_pCharacter = Character::create();
-	char buffer[256];
-	sprintf(buffer, "%sstop%d%s", BE_IDCA_DEFINES::ARCH_BISHOP_FILE_NAME, 2, BE_IDCA_DEFINES::SPRITE_FRAME_FILE_EXTENTION);
-	m_pCharacter->initWithSpriteFrameName(buffer);
+
+	m_pCharacter = Character::create(BE_IDCA_DEFINES::ARCH_BISHOP_FILE_NAME, BE_IDCA_DEFINES::SPRITE_FRAME_FILE_EXTENTION);
+
 	m_pCharacter->setPosition(Vec2(100, 100));
 	this->addChild(m_pCharacter);
 	//이벤트 리스너
@@ -70,6 +69,10 @@ void PrototypeScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event * event)
 	{
 		m_keyboardInput |= BE_IDCA_KEY_BOARD::INPUT::A;
 	}
+
+	char buffer[256];
+	sprintf(buffer, "input: %d", m_keyboardInput);
+	cocos2d::log(buffer);
 }
 
 void PrototypeScene::onKeyReleased(EventKeyboard::KeyCode keyCode, Event * event)

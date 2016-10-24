@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>hit170.png</key>
+            <key>archbishophit170.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -19,7 +19,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit171.png</key>
+            <key>archbishophit171.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -34,7 +34,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit172.png</key>
+            <key>archbishophit172.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -49,7 +49,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit173.png</key>
+            <key>archbishophit173.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -64,7 +64,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit174.png</key>
+            <key>archbishophit174.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -79,7 +79,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hit175.png</key>
+            <key>archbishophit175.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -94,7 +94,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit176.png</key>
+            <key>archbishophit176.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -109,7 +109,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit180.png</key>
+            <key>archbishophit180.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -124,7 +124,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit181.png</key>
+            <key>archbishophit181.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -139,7 +139,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit182.png</key>
+            <key>archbishophit182.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -154,7 +154,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit183.png</key>
+            <key>archbishophit183.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -169,7 +169,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit184.png</key>
+            <key>archbishophit184.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -184,7 +184,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hit185.png</key>
+            <key>archbishophit185.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -199,7 +199,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hit186.png</key>
+            <key>archbishophit186.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -214,7 +214,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit200.png</key>
+            <key>archbishophit200.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -229,7 +229,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit201.png</key>
+            <key>archbishophit201.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -244,7 +244,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit202.png</key>
+            <key>archbishophit202.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -259,7 +259,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit203.png</key>
+            <key>archbishophit203.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -274,7 +274,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit204.png</key>
+            <key>archbishophit204.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -289,7 +289,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit205.png</key>
+            <key>archbishophit205.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -304,7 +304,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit206.png</key>
+            <key>archbishophit206.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -319,7 +319,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit210.png</key>
+            <key>archbishophit210.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -334,7 +334,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit211.png</key>
+            <key>archbishophit211.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -349,7 +349,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit212.png</key>
+            <key>archbishophit212.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -364,7 +364,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit213.png</key>
+            <key>archbishophit213.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -379,7 +379,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit214.png</key>
+            <key>archbishophit214.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -394,7 +394,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit215.png</key>
+            <key>archbishophit215.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -409,7 +409,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit216.png</key>
+            <key>archbishophit216.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -424,7 +424,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit220.png</key>
+            <key>archbishophit220.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -439,7 +439,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit221.png</key>
+            <key>archbishophit221.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -454,7 +454,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit222.png</key>
+            <key>archbishophit222.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -469,7 +469,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit223.png</key>
+            <key>archbishophit223.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -484,7 +484,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit224.png</key>
+            <key>archbishophit224.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -499,7 +499,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hit225.png</key>
+            <key>archbishophit225.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -514,7 +514,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hit226.png</key>
+            <key>archbishophit226.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -529,7 +529,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit240.png</key>
+            <key>archbishophit240.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -544,7 +544,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit241.png</key>
+            <key>archbishophit241.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -559,7 +559,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit242.png</key>
+            <key>archbishophit242.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -574,7 +574,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit243.png</key>
+            <key>archbishophit243.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -589,7 +589,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit244.png</key>
+            <key>archbishophit244.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -604,7 +604,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hit245.png</key>
+            <key>archbishophit245.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -619,7 +619,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hit246.png</key>
+            <key>archbishophit246.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -634,7 +634,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit250.png</key>
+            <key>archbishophit250.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -649,7 +649,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit251.png</key>
+            <key>archbishophit251.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -664,7 +664,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit252.png</key>
+            <key>archbishophit252.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -679,7 +679,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit253.png</key>
+            <key>archbishophit253.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -694,7 +694,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit254.png</key>
+            <key>archbishophit254.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -709,7 +709,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hit255.png</key>
+            <key>archbishophit255.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -724,7 +724,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit256.png</key>
+            <key>archbishophit256.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -739,7 +739,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit260.png</key>
+            <key>archbishophit260.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -754,7 +754,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit261.png</key>
+            <key>archbishophit261.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -769,7 +769,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit262.png</key>
+            <key>archbishophit262.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -784,7 +784,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit263.png</key>
+            <key>archbishophit263.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -799,7 +799,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>hit264.png</key>
+            <key>archbishophit264.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -814,7 +814,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hit265.png</key>
+            <key>archbishophit265.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -829,7 +829,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>hit266.png</key>
+            <key>archbishophit266.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -844,7 +844,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright10.png</key>
+            <key>archbishopmove10.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -859,7 +859,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright100.png</key>
+            <key>archbishopmove100.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -874,7 +874,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright101.png</key>
+            <key>archbishopmove101.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -889,7 +889,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright102.png</key>
+            <key>archbishopmove102.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -904,7 +904,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright103.png</key>
+            <key>archbishopmove103.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -919,7 +919,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright104.png</key>
+            <key>archbishopmove104.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -934,7 +934,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright105.png</key>
+            <key>archbishopmove105.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -949,7 +949,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright106.png</key>
+            <key>archbishopmove106.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -964,7 +964,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright107.png</key>
+            <key>archbishopmove107.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -979,7 +979,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright11.png</key>
+            <key>archbishopmove11.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -994,7 +994,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright12.png</key>
+            <key>archbishopmove12.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1009,7 +1009,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright13.png</key>
+            <key>archbishopmove13.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1024,7 +1024,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright14.png</key>
+            <key>archbishopmove14.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1039,7 +1039,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright15.png</key>
+            <key>archbishopmove15.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1054,7 +1054,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright16.png</key>
+            <key>archbishopmove16.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1069,7 +1069,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright17.png</key>
+            <key>archbishopmove17.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1084,7 +1084,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright20.png</key>
+            <key>archbishopmove20.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1099,7 +1099,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright21.png</key>
+            <key>archbishopmove21.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1114,7 +1114,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright22.png</key>
+            <key>archbishopmove22.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1129,7 +1129,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright23.png</key>
+            <key>archbishopmove23.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1144,7 +1144,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright24.png</key>
+            <key>archbishopmove24.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1159,7 +1159,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright25.png</key>
+            <key>archbishopmove25.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1174,7 +1174,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright26.png</key>
+            <key>archbishopmove26.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1189,7 +1189,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright27.png</key>
+            <key>archbishopmove27.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1204,7 +1204,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright40.png</key>
+            <key>archbishopmove40.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1219,7 +1219,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright41.png</key>
+            <key>archbishopmove41.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1234,7 +1234,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright42.png</key>
+            <key>archbishopmove42.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1249,7 +1249,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright43.png</key>
+            <key>archbishopmove43.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1264,7 +1264,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright44.png</key>
+            <key>archbishopmove44.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1279,7 +1279,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright45.png</key>
+            <key>archbishopmove45.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1294,7 +1294,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright46.png</key>
+            <key>archbishopmove46.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1309,7 +1309,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright47.png</key>
+            <key>archbishopmove47.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1324,7 +1324,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright50.png</key>
+            <key>archbishopmove50.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1339,7 +1339,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright51.png</key>
+            <key>archbishopmove51.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1354,7 +1354,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright52.png</key>
+            <key>archbishopmove52.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1369,7 +1369,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright53.png</key>
+            <key>archbishopmove53.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1384,7 +1384,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright54.png</key>
+            <key>archbishopmove54.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1399,7 +1399,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright55.png</key>
+            <key>archbishopmove55.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1414,7 +1414,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright56.png</key>
+            <key>archbishopmove56.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1429,7 +1429,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright57.png</key>
+            <key>archbishopmove57.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1444,7 +1444,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright60.png</key>
+            <key>archbishopmove60.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1459,7 +1459,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright61.png</key>
+            <key>archbishopmove61.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1474,7 +1474,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright62.png</key>
+            <key>archbishopmove62.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1489,7 +1489,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright63.png</key>
+            <key>archbishopmove63.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1504,7 +1504,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright64.png</key>
+            <key>archbishopmove64.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1519,7 +1519,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright65.png</key>
+            <key>archbishopmove65.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1534,7 +1534,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright66.png</key>
+            <key>archbishopmove66.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1549,7 +1549,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright67.png</key>
+            <key>archbishopmove67.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1564,7 +1564,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright80.png</key>
+            <key>archbishopmove80.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1579,7 +1579,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright81.png</key>
+            <key>archbishopmove81.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1594,7 +1594,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright82.png</key>
+            <key>archbishopmove82.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1609,7 +1609,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright83.png</key>
+            <key>archbishopmove83.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1624,7 +1624,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright84.png</key>
+            <key>archbishopmove84.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1639,7 +1639,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright85.png</key>
+            <key>archbishopmove85.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1654,7 +1654,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright86.png</key>
+            <key>archbishopmove86.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1669,7 +1669,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright87.png</key>
+            <key>archbishopmove87.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1684,7 +1684,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright90.png</key>
+            <key>archbishopmove90.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1699,7 +1699,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright91.png</key>
+            <key>archbishopmove91.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1714,7 +1714,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright92.png</key>
+            <key>archbishopmove92.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1729,7 +1729,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright93.png</key>
+            <key>archbishopmove93.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1744,7 +1744,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright94.png</key>
+            <key>archbishopmove94.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1759,7 +1759,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright95.png</key>
+            <key>archbishopmove95.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1774,7 +1774,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright96.png</key>
+            <key>archbishopmove96.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1789,7 +1789,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>moveSpright97.png</key>
+            <key>archbishopmove97.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1804,7 +1804,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>stopSprite0.png</key>
+            <key>archbishopstop0.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1819,7 +1819,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>stopSprite1.png</key>
+            <key>archbishopstop1.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1834,7 +1834,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>stopSprite2.png</key>
+            <key>archbishopstop2.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1849,7 +1849,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>stopSprite4.png</key>
+            <key>archbishopstop4.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1864,7 +1864,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>stopSprite5.png</key>
+            <key>archbishopstop5.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1879,7 +1879,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>stopSprite6.png</key>
+            <key>archbishopstop6.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1894,7 +1894,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>stopSprite8.png</key>
+            <key>archbishopstop8.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1909,7 +1909,7 @@
                 <key>textureRotated</key>
                 <true/>
             </dict>
-            <key>stopSprite9.png</key>
+            <key>archbishopstop9.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -1934,13 +1934,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>spriteArchBishop.png</string>
+            <string>spriteFrameIdca.png</string>
             <key>size</key>
             <string>{478,996}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:b8ed3f6d23fdb140ae94ccd6c85265d0:a17b69fe471cd48e3e02e733a561d9c2:366169ebd5a1987ce9d4e2e1775d2f44$</string>
+            <string>$TexturePacker:SmartUpdate:1f4e4a1db239dc20d2234303073eef80:a17b69fe471cd48e3e02e733a561d9c2:2b1e8d09917acb29329d5741d23a5c45$</string>
             <key>textureFileName</key>
-            <string>spriteArchBishop.png</string>
+            <string>spriteFrameIdca.png</string>
         </dict>
     </dict>
 </plist>

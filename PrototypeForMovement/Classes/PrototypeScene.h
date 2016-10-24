@@ -14,7 +14,7 @@ private:
 		A = 16
 	};
 public:
-	static Scene* scene();
+	static Scene* createScene();
 	CREATE_FUNC(PrototypeScene);
 	virtual bool init();
 

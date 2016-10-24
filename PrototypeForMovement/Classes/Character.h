@@ -4,8 +4,8 @@ class MakeAnimation;
 class Character :public Sprite
 {
 public:
-	static Character *create();
-	void initOptions();
+	static Character *create(const char const* filename, const char const* extention);
+	void initOptions(const char const* filename, const char const* extention);
 	//키보드 입력비트 플래그를 액션부분과,움직임부분으로 나누고 방향을 설정해 준다. 정지시에 사용할 이전 방향에 대한 처리도 같이함.
 	void SetInput(int inputFromScene);
 	//입력에 따라서 현재의 상태를 파악한다.
@@ -20,6 +20,9 @@ public:
 	void update(float dt);
 	//스프라이트 캐쉬에 이미지를 올린다.
 	void AddSpriteFramesWithFile(const char * filename);
+	void AttackOff();
+	void MoveOff();
+	void StopOff();
 private:
 	//공격,이동,정지 상태를 나타내는 변수
 	bool m_IsActionState;

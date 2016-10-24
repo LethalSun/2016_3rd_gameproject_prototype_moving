@@ -2,10 +2,21 @@
 #include "Character.h"
 #include "MakeAnimation.h"
 #include "EnumDefines.h"
-Character * Character::create()
+Character::Character()
+{
+}
+
+Character::~Character()
+{
+	delete m_pMakeAnimation;
+}
+Character * Character::create(const char const* filename, const char const* extention)
 {
 	auto pSprite = new Character();
-	if (!(pSprite))
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(BE_IDCA_DEFINES::PLIST_FILE_NAME);
+	char buffer[256];
+	sprintf(buffer, "%sstop%d%s", filename, 2, extention);
+	if (!(pSprite->initWithSpriteFrameName(buffer)))
 	{
 		CC_SAFE_DELETE(pSprite);
 		return nullptr;
@@ -13,11 +24,15 @@ Character * Character::create()
 
 	pSprite->autorelease();
 
-	pSprite->initOptions();
+	pSprite->initOptions(filename, extention);
+
+	return pSprite;
 }
-void Character::initOptions()
+void Character::initOptions(const char const* filename, const char const* extention)
 {
-	AddSpriteFramesWithFile(BE_IDCA_DEFINES::PLIST_FILE_NAME);
+	this->scheduleUpdate();
+	m_pMakeAnimation = new MakeAnimation(BE_IDCA_DEFINES::ARCH_BISHOP_FILE_NAME, BE_IDCA_DEFINES::SPRITE_FRAME_FILE_EXTENTION);
+	//this->addChild(m_pMakeAnimation);
 }
 //키보드 입력비트 플래그를 액션부분과,움직임부분으로 나누고 방향을 설정해 준다. 정지시에 사용할 이전 방향에 대한 처리도 같이함.
 void Character::SetInput(int inputFromScene)
@@ -91,6 +106,9 @@ void Character::SetInput(int inputFromScene)
 	break;
 	}
 	}
+	char buffer[256];
+	sprintf(buffer, "input1: %d", m_CurDirection);
+	cocos2d::log(buffer);
 }
 //입력에 따라서 현재의 상태를 파악한다.
 void Character::CheckCharacterState()
@@ -101,7 +119,7 @@ void Character::CheckCharacterState()
 		m_IsMoveState = false;
 		m_IsStopState = false;
 	}
-	else if ((m_IsActionState == false) && (m_MoveInput != BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
+	else if ((m_IsActionState == false) && (m_IsMoveState == false) && (m_MoveInput != BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
 	{
 		m_IsActionState = false;
 		m_IsMoveState = true;
@@ -109,7 +127,7 @@ void Character::CheckCharacterState()
 
 		m_BeforeDirection = m_CurDirection;
 	}
-	else if ((m_IsActionState == false) && (m_MoveInput == BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
+	else if ((m_IsActionState == false) && (m_IsStopState == false) && (m_MoveInput == BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
 	{
 		m_IsActionState = false;
 		m_IsMoveState = false;
@@ -123,6 +141,10 @@ void Character::Attack(float dt)
 	{
 		return;
 	}
+	auto animate = m_pMakeAnimation->AnimationAttack(m_CurDirection);
+	auto attackOff = CallFunc::create(CC_CALLBACK_0(Character::AttackOff, this));
+	auto sequence = Sequence::create(animate, attackOff, NULL);
+	this->runAction(sequence);
 }
 //이동모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Move(float dt)
@@ -131,6 +153,11 @@ void Character::Move(float dt)
 	{
 		return;
 	}
+
+	auto animate = m_pMakeAnimation->AnimationMove(m_CurDirection);
+	auto moveOff = CallFunc::create(CC_CALLBACK_0(Character::MoveOff, this));
+	auto sequence = Sequence::create(animate, moveOff, NULL);
+	this->runAction(sequence);
 }
 //정지모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Stop(float dt)
@@ -139,6 +166,11 @@ void Character::Stop(float dt)
 	{
 		return;
 	}
+
+	auto animate = m_pMakeAnimation->AnimationStop(m_CurDirection);
+	auto stopOff = CallFunc::create(CC_CALLBACK_0(Character::StopOff, this));
+	auto sequence = Sequence::create(animate, stopOff, NULL);
+	this->runAction(sequence);
 }
 //매프레임마다 이스프라이트에 관련한 것들을 갱신한다. 상태 파악->모션
 void Character::update(float dt)
@@ -164,10 +196,15 @@ void Character::AddSpriteFramesWithFile(const char * filename)
 {
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(filename);
 }
-Character::Character()
+void Character::AttackOff()
 {
+	m_IsActionState = false;
 }
-
-Character::~Character()
+void Character::MoveOff()
 {
+	m_IsMoveState = false;
+}
+void Character::StopOff()
+{
+	m_IsStopState = false;
 }
