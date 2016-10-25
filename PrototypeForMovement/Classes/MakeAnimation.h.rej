@@ -1,0 +1,10 @@
+diff a/PrototypeForMovement/Classes/MakeAnimation.h b/PrototypeForMovement/Classes/MakeAnimation.h	(rejected hunks)
+@@ -13,7 +13,7 @@
+ 	//���� �ִϸ��̼��� ��ȯ�Ѵ�.
+ 	Animate* AnimationAttack(int direction);
+ 	MakeAnimation(const char const *fileName, const char const * fileNameExtention);
+-	~MakeAnimation() {};
++	~MakeAnimation();
+ private:
+ 	//����Ȯ����
+ 	char m_FileNameExtention[10];
