@@ -21,7 +21,7 @@ Character::~Character()
 Character * Character::create(const char const* filename, const char const* extention)
 {
 	auto pSprite = new Character();
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(BE_IDCA_DEFINES::PLIST_FILE_NAME);
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile(BFE_IDCA_DEFINE::PLIST_FILE_NAME);
 	char buffer[256];
 	sprintf(buffer, "%sstop%d%s", filename, 2, extention);
 	if (!(pSprite->initWithSpriteFrameName(buffer)))
@@ -39,11 +39,11 @@ Character * Character::create(const char const* filename, const char const* exte
 void Character::initOptions(const char const* filename, const char const* extention)
 {
 	this->scheduleUpdate();
-	m_pMakeAnimation = new MakeAnimation(BE_IDCA_DEFINES::ARCH_BISHOP_FILE_NAME, BE_IDCA_DEFINES::SPRITE_FRAME_FILE_EXTENTION);
+	m_pMakeAnimation = new MakeAnimation(BFE_IDCA_DEFINE::ARCH_BISHOP_FILE_NAME, BFE_IDCA_DEFINE::SPRITE_FRAME_FILE_EXTENTION);
 	//공격,이동,정지 상태를 나타내는 변수 초기화
-	m_IsActionState = false;
-	m_IsMoveState = false;
-	m_IsStopState = true;
+//	m_IsActionState = false;
+//	m_IsMoveState = false;
+//	m_IsStopState = true;
 	//애니메이션중인지 아닌지를 나타내는 변수
 	m_ActionAnimationOn = false;
 	m_MoveAnimationOn = false;
@@ -52,8 +52,8 @@ void Character::initOptions(const char const* filename, const char const* extent
 	m_Input = 0;
 	m_ActionInput = 0;
 	m_MoveInput = 0;
-	m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::NO_MOVE;
-	m_BeforeDirection = BE_IDCA_ACTIONS::ACTIONS::NO_MOVE;
+	m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::NO_MOVE;
+	m_BeforeDirection = BFE_IDCA_DEFINE::ACTIONS::NO_MOVE;
 	m_UnitVector[0] = 0;
 	m_UnitVector[1] = 0;
 	//this->addChild(m_pMakeAnimation);
@@ -62,77 +62,77 @@ void Character::initOptions(const char const* filename, const char const* extent
 void Character::SetInput(int inputFromScene)
 {
 	m_Input = inputFromScene;
-	m_ActionInput = m_Input & BE_IDCA_ACTIONS::ACTIONS::GET_ACTION_BIT;
-	m_MoveInput = m_Input & BE_IDCA_ACTIONS::ACTIONS::DIRECTION_BIT;
+	m_ActionInput = m_Input & BFE_IDCA_DEFINE::ACTIONS::GET_ACTION_BIT;
+	m_MoveInput = m_Input & BFE_IDCA_DEFINE::ACTIONS::DIRECTION_BIT;
 	switch (m_MoveInput)
 	{
-	case BE_IDCA_ACTIONS::ACTIONS::TOP:
+	case BFE_IDCA_DEFINE::ACTIONS::TOP:
 	{
 		m_UnitVector[0] = 0;
 		m_UnitVector[1] = 1;
 		m_BeforeDirection = m_CurDirection;
-		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::TOP;
+		m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::TOP;
 		break;
 	}
-	case BE_IDCA_ACTIONS::ACTIONS::TOP_RIGTH:
+	case BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH:
 	{
 		m_UnitVector[0] = 1;
 		m_UnitVector[1] = 1;
 		m_BeforeDirection = m_CurDirection;
-		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::TOP_RIGTH;
+		m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH;
 		break;
 	}
-	case BE_IDCA_ACTIONS::ACTIONS::RIGHT:
+	case BFE_IDCA_DEFINE::ACTIONS::RIGHT:
 	{
 		m_UnitVector[0] = 1;
 		m_UnitVector[1] = 0;
 		m_BeforeDirection = m_CurDirection;
-		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::RIGHT;
+		m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::RIGHT;
 		break;
 	}
-	case BE_IDCA_ACTIONS::ACTIONS::BOTTOM_RIGHT:
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT:
 	{
 		m_UnitVector[0] = 1;
 		m_UnitVector[1] = -1;
 		m_BeforeDirection = m_CurDirection;
-		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::BOTTOM_RIGHT;
+		m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT;
 		break;
 	}
-	case BE_IDCA_ACTIONS::ACTIONS::BOTTOM:
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM:
 	{
 		m_UnitVector[0] = 0;
 		m_UnitVector[1] = -1;
 		m_BeforeDirection = m_CurDirection;
-		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::BOTTOM;
+		m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::BOTTOM;
 		break;
 	}
-	case BE_IDCA_ACTIONS::ACTIONS::BOTTOM_LEFT:
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT:
 	{
 		m_UnitVector[0] = -1;
 		m_UnitVector[1] = -1;
 		m_BeforeDirection = m_CurDirection;
-		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::BOTTOM_LEFT;
+		m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT;
 		break;
 	}
-	case BE_IDCA_ACTIONS::ACTIONS::LEFT:
+	case BFE_IDCA_DEFINE::ACTIONS::LEFT:
 	{
 		m_UnitVector[0] = -1;
 		m_UnitVector[1] = 0;
 		m_BeforeDirection = m_CurDirection;
-		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::LEFT;
+		m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::LEFT;
 		break;
 	}
-	case BE_IDCA_ACTIONS::ACTIONS::TOP_LEFT:
+	case BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT:
 	{
 		m_UnitVector[0] = -1;
 		m_UnitVector[1] = 1;
 		m_BeforeDirection = m_CurDirection;
-		m_CurDirection = BE_IDCA_ACTIONS::ACTIONS::TOP_LEFT;
+		m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT;
 		break;
 	}
 	default:
 	{
-		m_MoveInput = BE_IDCA_ACTIONS::ACTIONS::NO_MOVE;
+		m_MoveInput = BFE_IDCA_DEFINE::ACTIONS::NO_MOVE;
 		m_CurDirection = m_BeforeDirection;
 		m_UnitVector[0] = 0;
 		m_UnitVector[1] = 0;
@@ -146,29 +146,62 @@ void Character::SetInput(int inputFromScene)
 //입력에 따라서 현재의 상태를 파악한다.
 void Character::CheckCharacterState()
 {
-	if ((m_IsActionState == false) && (m_ActionInput != 0))
+	if (m_ActionAnimationOn == false)
 	{
-		m_IsActionState = true;
-		m_IsMoveState = false;
-		m_IsStopState = false;
+		if (m_ActionInput == BFE_IDCA_DEFINE::ACTIONS::ATTACK)
+		{
+			m_State = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_ATTACK;
+		}
+		else
+		{
+			if (m_MoveInput == BFE_IDCA_DEFINE::ACTIONS::NO_MOVE)
+			{
+				m_State = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP;
+			}
+			else
+			{
+				m_State = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_MOVE;
+			}
+		}
 	}
-	else if ((m_IsActionState == false) && (m_IsMoveState == false) && (m_MoveInput != BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
+	else
 	{
-		m_IsActionState = false;
-		m_IsMoveState = true;
-		m_IsStopState = false;
+		return;
+	}
+	//if (isAttack)
+	//	aTTACK();
+	//	return;
+	//
+	//	if (isInputBykey)
+	//	{
+	//		Move();
+	//	}
+	//	else
+	//		Idle();
 
-		m_BeforeDirection = m_CurDirection;
-	}
-	else if ((m_IsActionState == false) && (m_IsStopState == false) && (m_MoveInput == BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
-	{
-		m_IsActionState = false;
-		m_IsMoveState = false;
-		m_IsStopState = true;
-	}
-	//	char buffer[256];
-	//	sprintf(buffer, "inputKeyboard: %d,%d,%d", m_IsActionState, m_IsMoveState, m_IsStopState);
-	//	cocos2d::log(buffer);
+	//	if ((m_IsActionState == false) && (m_ActionInput != 0))
+	//	{
+	//		m_IsActionState = true;
+	//		m_IsMoveState = false;
+	//		m_IsStopState = false;
+	//	}
+	//	else if ((m_IsActionState == false) && (m_IsMoveState == false) && (m_MoveInput != BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
+	//	{
+	//		m_IsActionState = false;
+	//		m_IsMoveState = true;
+	//		m_IsStopState = false;
+	//
+	//		m_BeforeDirection = m_CurDirection;
+	//	}
+	//	else if ((m_IsActionState == false) && (m_IsStopState == false) && (m_MoveInput == BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
+	//	{
+	//		m_IsActionState = false;
+	//		m_IsMoveState = false;
+	//		m_IsStopState = true;
+	//	}
+		//	char buffer[256];
+		//	sprintf(buffer, "inputKeyboard: %d,%d,%d", m_IsActionState, m_IsMoveState, m_IsStopState);
+		//	cocos2d::log(buffer);
 }
 //공격모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Attack(float dt)
@@ -187,7 +220,7 @@ void Character::Attack(float dt)
 //이동모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Move(float dt)
 {
-	if (m_MoveAnimationOn == true)
+	if (m_MoveAnimationOn == true && m_BeforeDirection == m_CurDirection)
 	{
 		return;
 	}
@@ -203,10 +236,6 @@ void Character::Move(float dt)
 //정지모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Stop(float dt)
 {
-	if (m_StopAnimationOn == true)
-	{
-		return;
-	}
 	stopAllActions();
 	auto animate = m_pMakeAnimation->AnimationStop(m_CurDirection);
 	auto stopOn = CallFunc::create(CC_CALLBACK_0(Character::StopOn, this));
@@ -220,15 +249,15 @@ void Character::update(float dt)
 	//상태 파악
 	CheckCharacterState();
 	//모션
-	if (m_IsActionState == true)
+	if (m_State == BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_ATTACK)
 	{
 		Attack(dt);
 	}
-	else if (m_IsMoveState == true)
+	else if (m_State == BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_MOVE)
 	{
 		Move(dt);
 	}
-	else if (m_IsStopState == true)
+	else if (m_State == BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP)
 	{
 		Stop(dt);
 	}
@@ -241,16 +270,18 @@ void Character::AddSpriteFramesWithFile(const char * filename)
 void Character::AttackOff()
 {
 	m_ActionAnimationOn = false;
-	m_IsActionState = false;
-	m_IsMoveState = false;
-	m_IsStopState = true;
+	m_State = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP;
+	//	m_IsActionState = false;
+	//	m_IsMoveState = false;
+	//	m_IsStopState = true;
 }
 void Character::MoveOff()
 {
 	m_MoveAnimationOn = false;
-	m_IsActionState = false;
-	m_IsMoveState = false;
-	m_IsStopState = true;
+	m_State = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP;
+	//	m_IsActionState = false;
+	//	m_IsMoveState = false;
+	//	m_IsStopState = true;
 }
 void Character::StopOff()
 {

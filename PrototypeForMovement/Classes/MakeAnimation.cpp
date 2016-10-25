@@ -15,7 +15,7 @@
 //이동 애니메이션을 만든다.
 Animate* MakeAnimation::AnimationMove(int direction)
 {
-	int imageStartNumber = direction * BE_IDCA_DEFINES::NUM_OF_SPRITE_FILE_PER_ACTIONS;
+	int imageStartNumber = direction * BFE_IDCA_DEFINE::NUM_OF_SPRITE_FILE_PER_ACTIONS;
 	Vector<SpriteFrame*> animFrame;
 	for (int i = imageStartNumber; i < imageStartNumber + 8; i++)
 	{
@@ -26,7 +26,7 @@ Animate* MakeAnimation::AnimationMove(int direction)
 		auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_Buffer);
 		animFrame.pushBack(frame);
 	}
-	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BE_IDCA_DEFINES::ANIMATION_SPEED);
+	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BFE_IDCA_DEFINE::ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
 	//auto AnimationOff = CallFunc::create(CC_CALLBACK_0(MakeAnimation::MoveAnimationEnd, this));
 	//auto sequenceAnimation = Sequence::create(m_pAnimate, AnimationOff, NULL);
@@ -41,7 +41,7 @@ Animate* MakeAnimation::AnimationStop(int direction)
 	sprintf(m_Buffer, "%sstop%d%s", m_FrameName, direction, m_FileNameExtention);
 	auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_Buffer);
 	animFrame.pushBack(frame);
-	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BE_IDCA_DEFINES::ANIMATION_SPEED);
+	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BFE_IDCA_DEFINE::ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
 	//sprintf(m_Buffer, "%sstop%d%s", m_FrameName, direction, m_FileNameExtention);
 	return m_pAnimate;
@@ -50,7 +50,7 @@ Animate* MakeAnimation::AnimationStop(int direction)
 //공격 애니메이션을 만든다.
 Animate* MakeAnimation::AnimationAttack(int direction)
 {
-	int imageStartNumber = (direction | BE_IDCA_ACTIONS::ACTIONS::ATTACK) * BE_IDCA_DEFINES::NUM_OF_SPRITE_FILE_PER_ACTIONS;
+	int imageStartNumber = (direction | BFE_IDCA_DEFINE::ACTIONS::ATTACK) * BFE_IDCA_DEFINE::NUM_OF_SPRITE_FILE_PER_ACTIONS;
 
 	if (imageStartNumber < 170)
 	{
@@ -68,7 +68,7 @@ Animate* MakeAnimation::AnimationAttack(int direction)
 		animFrame.pushBack(frame);
 	}
 
-	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BE_IDCA_DEFINES::HIT_ANIMATION_SPEED);
+	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BFE_IDCA_DEFINE::HIT_ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
 	//auto AnimationOff = CallFunc::create(CC_CALLBACK_0(MakeAnimation::AttackAnimationEnd, this));
 //	auto sequenceAnimation = Sequence::create(m_pAnimate, AnimationOff, NULL);
@@ -78,37 +78,110 @@ Animate* MakeAnimation::AnimationAttack(int direction)
 
 Animate * MakeAnimation::GetAttackAnimation(int direction)
 {
-	*m_pAttackUpUpLeft;
-	*m_pAttackLeftDownLeft;
-	*m_pAttackDownDownRight;
-	*m_pAttackRightUpRight;
+	if (direction == BFE_IDCA_DEFINE::ACTIONS::TOP || direction == BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT)
+	{
+		return m_pAttackUpUpLeft;
+	}
+	else if (direction == BFE_IDCA_DEFINE::ACTIONS::LEFT || direction == BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT)
+	{
+		return m_pAttackLeftDownLeft;
+	}
+	else if (direction == BFE_IDCA_DEFINE::ACTIONS::BOTTOM || direction == BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT)
+	{
+		return m_pAttackDownDownRight;
+	}
+	else if (direction == BFE_IDCA_DEFINE::ACTIONS::RIGHT || direction == BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH)
+	{
+		return m_pAttackRightUpRight;
+	}
 
 	return nullptr;
 }
 
 Animate * MakeAnimation::GetMoveAnimation(int direction)
 {
-	*m_pMoveUp;
-	*m_pMoveDown;
-	*m_pMoveRight;
-	*m_pMoveLeft;
-	*m_pMoveUpLeft;
-	*m_pMoveUpRight;
-	*m_pMoveDownRight;
-	*m_pMoveDownLeft;
-	return nullptr;
+	switch (direction)
+	{
+	case BFE_IDCA_DEFINE::ACTIONS::TOP:
+	{
+		return m_pMoveUp;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT:
+	{
+		return m_pMoveUpLeft;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH:
+	{
+		return m_pMoveUpRight;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::RIGHT:
+	{
+		return m_pMoveRight;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT:
+	{
+		return m_pMoveDownRight;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM:
+	{
+		return m_pMoveDown;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT:
+	{
+		return m_pMoveDownLeft;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::LEFT:
+	{
+		return m_pMoveLeft;
+	}
+	default:
+	{
+		return nullptr;
+	}
+	}
 }
 
 Animate * MakeAnimation::GetStopAnimation(int direction)
 {
-	*m_pStopUp;
-	*m_pStopDown;
-	*m_pStopRight;
-	*m_pStopLeft;
-	*m_pStopUpLeft;
-	*m_pStopUpRight;
-	*m_pStopDownRight;
-	*m_pStopDownLeft;
+	switch (direction)
+	{
+	case BFE_IDCA_DEFINE::ACTIONS::TOP:
+	{
+		return m_pStopUp;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT:
+	{
+		return m_pStopUpLeft;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH:
+	{
+		return m_pStopUpRight;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::RIGHT:
+	{
+		return m_pStopRight;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT:
+	{
+		return m_pStopDownRight;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM:
+	{
+		return m_pStopDown;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT:
+	{
+		return m_pStopDownLeft;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::LEFT:
+	{
+		return m_pStopLeft;
+	}
+	default:
+	{
+		return nullptr;
+	}
+	}
 	return nullptr;
 }
 
@@ -135,11 +208,31 @@ MakeAnimation::MakeAnimation(const char const *fileName, const char const * file
 	m_pStopUpLeft = AnimationStop(9);
 	m_pStopUpRight = AnimationStop(5);
 	m_pStopDownRight = AnimationStop(6);
-	m_pStopDownLeft = AnimationStop(10);
+	m_pStopDownLeft = AnimationStop(0);
 }
 
 MakeAnimation::~MakeAnimation()
 {
+	//	delete m_pMoveUp;
+	//	delete m_pMoveDown;
+	//	delete m_pMoveRight;
+	//	delete m_pMoveLeft;
+	//	delete m_pMoveUpLeft;
+	//	delete m_pMoveUpRight;
+	//	delete m_pMoveDownRight;
+	//	delete m_pMoveDownLeft;
+	//	delete m_pAttackUpUpLeft;
+	//	delete m_pAttackLeftDownLeft;
+	//	delete m_pAttackDownDownRight;
+	//	delete m_pAttackRightUpRight;
+	//	delete m_pStopUp;
+	//	delete m_pStopDown;
+	//	delete m_pStopRight;
+	//	delete m_pStopLeft;
+	//	delete m_pStopUpLeft;
+	//	delete m_pStopUpRight;
+	//	delete m_pStopDownRight;
+	//	delete m_pStopDownLeft;
 }
 
 //void MakeAnimation::AttackAnimationEnd()
