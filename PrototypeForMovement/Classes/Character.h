@@ -29,6 +29,7 @@ public:
 private:
 	//공격,이동,정지 상태를 나타내는 변수
 	int m_State;
+	int m_BeforeState;
 	//	bool m_IsActionState;
 	//	bool m_IsMoveState;
 	//	bool m_IsStopState;

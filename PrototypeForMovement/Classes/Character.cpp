@@ -168,40 +168,6 @@ void Character::CheckCharacterState()
 	{
 		return;
 	}
-	//if (isAttack)
-	//	aTTACK();
-	//	return;
-	//
-	//	if (isInputBykey)
-	//	{
-	//		Move();
-	//	}
-	//	else
-	//		Idle();
-
-	//	if ((m_IsActionState == false) && (m_ActionInput != 0))
-	//	{
-	//		m_IsActionState = true;
-	//		m_IsMoveState = false;
-	//		m_IsStopState = false;
-	//	}
-	//	else if ((m_IsActionState == false) && (m_IsMoveState == false) && (m_MoveInput != BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
-	//	{
-	//		m_IsActionState = false;
-	//		m_IsMoveState = true;
-	//		m_IsStopState = false;
-	//
-	//		m_BeforeDirection = m_CurDirection;
-	//	}
-	//	else if ((m_IsActionState == false) && (m_IsStopState == false) && (m_MoveInput == BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
-	//	{
-	//		m_IsActionState = false;
-	//		m_IsMoveState = false;
-	//		m_IsStopState = true;
-	//	}
-		//	char buffer[256];
-		//	sprintf(buffer, "inputKeyboard: %d,%d,%d", m_IsActionState, m_IsMoveState, m_IsStopState);
-		//	cocos2d::log(buffer);
 }
 //공격모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Attack(float dt)
@@ -220,7 +186,7 @@ void Character::Attack(float dt)
 //이동모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Move(float dt)
 {
-	if (m_MoveAnimationOn == true && m_BeforeDirection == m_CurDirection)
+	if (m_MoveAnimationOn == true && m_BeforeDirection == m_CurDirection && m_BeforeState == m_State)
 	{
 		return;
 	}
@@ -252,14 +218,24 @@ void Character::update(float dt)
 	if (m_State == BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_ATTACK)
 	{
 		Attack(dt);
+		m_BeforeState = m_State;
 	}
 	else if (m_State == BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_MOVE)
 	{
 		Move(dt);
+		auto currentposition = getPosition();
+
+		auto deltaX = (m_UnitVector[0] * (BFE_IDCA_DEFINE::PIXEL_PER_SECOND)*dt);
+		auto deltaY = (m_UnitVector[1] * (BFE_IDCA_DEFINE::PIXEL_PER_SECOND)*dt);
+
+		setPositionX(currentposition.x + deltaX);
+		setPositionY(currentposition.y + deltaY);
+		m_BeforeState = m_State;
 	}
 	else if (m_State == BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP)
 	{
 		Stop(dt);
+		m_BeforeState = m_State;
 	}
 }
 //스프라이트 캐쉬에 이미지를 올린다.

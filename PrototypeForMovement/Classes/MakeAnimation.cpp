@@ -41,7 +41,7 @@ Animate* MakeAnimation::AnimationStop(int direction)
 	sprintf(m_Buffer, "%sstop%d%s", m_FrameName, direction, m_FileNameExtention);
 	auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_Buffer);
 	animFrame.pushBack(frame);
-	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BFE_IDCA_DEFINE::ANIMATION_SPEED);
+	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BFE_IDCA_DEFINE::STOP_ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
 	//sprintf(m_Buffer, "%sstop%d%s", m_FrameName, direction, m_FileNameExtention);
 	return m_pAnimate;
