@@ -6,6 +6,10 @@ class Character :public Sprite
 public:
 	static Character *create(const char const* filename, const char const* extention);
 	void initOptions(const char const* filename, const char const* extention);
+	void AddEvent();
+	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event * event);
+	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event * event);
+	int m_keyboardInput;
 	//키보드 입력비트 플래그를 액션부분과,움직임부분으로 나누고 방향을 설정해 준다. 정지시에 사용할 이전 방향에 대한 처리도 같이함.
 	void SetInput(int inputFromScene);
 	//입력에 따라서 현재의 상태를 파악한다.

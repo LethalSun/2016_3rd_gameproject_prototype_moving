@@ -58,6 +58,76 @@ void Character::initOptions(const char const* filename, const char const* extent
 	m_UnitVector[1] = 0;
 	//this->addChild(m_pMakeAnimation);
 }
+
+void Character::AddEvent()
+{
+	auto eventListener = EventListenerKeyboard::create();
+
+	eventListener->onKeyPressed = CC_CALLBACK_2(Character::onKeyPressed, this);
+	eventListener->onKeyReleased = CC_CALLBACK_2(Character::onKeyReleased, this);
+
+	this->_eventDispatcher->addEventListenerWithSceneGraphPriority(eventListener, this);
+}
+void Character::onKeyPressed(EventKeyboard::KeyCode keyCode, Event * event)
+{
+	if (keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW)
+	{
+		m_keyboardInput |= BFE_IDCA_DEFINE::INPUT::KEY_UP;
+	}
+
+	else if (keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW)
+	{
+		m_keyboardInput |= BFE_IDCA_DEFINE::INPUT::KEY_DOWN;
+	}
+
+	else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
+	{
+		m_keyboardInput |= BFE_IDCA_DEFINE::INPUT::KEY_RIGHT;
+	}
+
+	else if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+	{
+		m_keyboardInput |= BFE_IDCA_DEFINE::INPUT::KEY_LEFT;
+	}
+
+	else if (keyCode == EventKeyboard::KeyCode::KEY_A)
+	{
+		m_keyboardInput |= BFE_IDCA_DEFINE::INPUT::KEY_A;
+	}
+
+	char buffer[256];
+	sprintf(buffer, "inputKeyboard: %d", m_keyboardInput);
+	cocos2d::log(buffer);
+}
+
+void Character::onKeyReleased(EventKeyboard::KeyCode keyCode, Event * event)
+{
+	if (keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW)
+	{
+		m_keyboardInput &= ~(BFE_IDCA_DEFINE::INPUT::KEY_UP);
+	}
+
+	else if (keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW)
+	{
+		m_keyboardInput &= ~(BFE_IDCA_DEFINE::INPUT::KEY_DOWN);
+	}
+
+	else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
+	{
+		m_keyboardInput &= ~(BFE_IDCA_DEFINE::INPUT::KEY_RIGHT);
+	}
+
+	else if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+	{
+		m_keyboardInput &= ~(BFE_IDCA_DEFINE::INPUT::KEY_LEFT);
+	}
+
+	else if (keyCode == EventKeyboard::KeyCode::KEY_A)
+	{
+		m_keyboardInput &= ~(BFE_IDCA_DEFINE::INPUT::KEY_A);
+	}
+}
+
 //키보드 입력비트 플래그를 액션부분과,움직임부분으로 나누고 방향을 설정해 준다. 정지시에 사용할 이전 방향에 대한 처리도 같이함.
 void Character::SetInput(int inputFromScene)
 {
@@ -168,40 +238,6 @@ void Character::CheckCharacterState()
 	{
 		return;
 	}
-	//if (isAttack)
-	//	aTTACK();
-	//	return;
-	//
-	//	if (isInputBykey)
-	//	{
-	//		Move();
-	//	}
-	//	else
-	//		Idle();
-
-	//	if ((m_IsActionState == false) && (m_ActionInput != 0))
-	//	{
-	//		m_IsActionState = true;
-	//		m_IsMoveState = false;
-	//		m_IsStopState = false;
-	//	}
-	//	else if ((m_IsActionState == false) && (m_IsMoveState == false) && (m_MoveInput != BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
-	//	{
-	//		m_IsActionState = false;
-	//		m_IsMoveState = true;
-	//		m_IsStopState = false;
-	//
-	//		m_BeforeDirection = m_CurDirection;
-	//	}
-	//	else if ((m_IsActionState == false) && (m_IsStopState == false) && (m_MoveInput == BE_IDCA_ACTIONS::ACTIONS::NO_MOVE))
-	//	{
-	//		m_IsActionState = false;
-	//		m_IsMoveState = false;
-	//		m_IsStopState = true;
-	//	}
-		//	char buffer[256];
-		//	sprintf(buffer, "inputKeyboard: %d,%d,%d", m_IsActionState, m_IsMoveState, m_IsStopState);
-		//	cocos2d::log(buffer);
 }
 //공격모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Attack(float dt)
@@ -271,17 +307,11 @@ void Character::AttackOff()
 {
 	m_ActionAnimationOn = false;
 	m_State = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP;
-	//	m_IsActionState = false;
-	//	m_IsMoveState = false;
-	//	m_IsStopState = true;
 }
 void Character::MoveOff()
 {
 	m_MoveAnimationOn = false;
 	m_State = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP;
-	//	m_IsActionState = false;
-	//	m_IsMoveState = false;
-	//	m_IsStopState = true;
 }
 void Character::StopOff()
 {
