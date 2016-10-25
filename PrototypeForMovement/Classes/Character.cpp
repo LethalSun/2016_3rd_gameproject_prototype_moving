@@ -3,6 +3,13 @@
 #include "MakeAnimation.h"
 #include "EnumDefines.h"
 #include <bitset>
+
+void BeepThread()
+{
+	auto beepThread = std::thread([]() {Beep(1000, 100); });
+	beepThread.detach();
+}
+
 Character::Character()
 {
 }
@@ -37,6 +44,10 @@ void Character::initOptions(const char const* filename, const char const* extent
 	m_IsActionState = false;
 	m_IsMoveState = false;
 	m_IsStopState = true;
+	//애니메이션중인지 아닌지를 나타내는 변수
+	m_ActionAnimationOn = false;
+	m_MoveAnimationOn = false;
+	m_StopAnimationOn = true;
 	//입력플래그를 처리하기 위한 변수 초기화
 	m_Input = 0;
 	m_ActionInput = 0;
@@ -128,9 +139,9 @@ void Character::SetInput(int inputFromScene)
 		break;
 	}
 	}
-	char buffer[256];
-	sprintf(buffer, "inputCharacter: %d,%d", m_CurDirection, m_MoveInput);
-	cocos2d::log(buffer);
+	//	char buffer[256];
+	//	sprintf(buffer, "inputCharacter: %d,%d", m_CurDirection, m_MoveInput);
+	//	cocos2d::log(buffer);
 }
 //입력에 따라서 현재의 상태를 파악한다.
 void Character::CheckCharacterState()
@@ -155,44 +166,53 @@ void Character::CheckCharacterState()
 		m_IsMoveState = false;
 		m_IsStopState = true;
 	}
+	//	char buffer[256];
+	//	sprintf(buffer, "inputKeyboard: %d,%d,%d", m_IsActionState, m_IsMoveState, m_IsStopState);
+	//	cocos2d::log(buffer);
 }
 //공격모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Attack(float dt)
 {
-	if (m_IsActionState == false)
+	if (m_ActionAnimationOn == true)
 	{
 		return;
 	}
+	stopAllActions();
 	auto animate = m_pMakeAnimation->AnimationAttack(m_CurDirection);
+	auto attackOn = CallFunc::create(CC_CALLBACK_0(Character::AttackOn, this));
 	auto attackOff = CallFunc::create(CC_CALLBACK_0(Character::AttackOff, this));
-	auto sequence = Sequence::create(animate, attackOff, NULL);
-	this->runAction(sequence);
+	auto sequence = Sequence::create(attackOn, animate, attackOff, NULL);
+	runAction(sequence);
 }
 //이동모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Move(float dt)
 {
-	if (m_IsMoveState == false)
+	if (m_MoveAnimationOn == true)
 	{
 		return;
 	}
-
+	//BeepThread();
+	stopAllActions();
 	auto animate = m_pMakeAnimation->AnimationMove(m_CurDirection);
+	auto moveOn = CallFunc::create(CC_CALLBACK_0(Character::MoveOn, this));
 	auto moveOff = CallFunc::create(CC_CALLBACK_0(Character::MoveOff, this));
-	auto sequence = Sequence::create(animate, moveOff, NULL);
-	this->runAction(sequence);
+	auto sequence = Sequence::create(moveOn, animate, moveOff, NULL);
+	cocos2d::log("걷기시작");
+	runAction(sequence);
 }
 //정지모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Stop(float dt)
 {
-	if (m_IsStopState == false)
+	if (m_StopAnimationOn == true)
 	{
 		return;
 	}
-
+	stopAllActions();
 	auto animate = m_pMakeAnimation->AnimationStop(m_CurDirection);
+	auto stopOn = CallFunc::create(CC_CALLBACK_0(Character::StopOn, this));
 	auto stopOff = CallFunc::create(CC_CALLBACK_0(Character::StopOff, this));
-	auto sequence = Sequence::create(animate, stopOff, NULL);
-	this->runAction(sequence);
+	auto sequence = Sequence::create(stopOn, animate, stopOff, NULL);
+	runAction(sequence);
 }
 //매프레임마다 이스프라이트에 관련한 것들을 갱신한다. 상태 파악->모션
 void Character::update(float dt)
@@ -220,13 +240,34 @@ void Character::AddSpriteFramesWithFile(const char * filename)
 }
 void Character::AttackOff()
 {
+	m_ActionAnimationOn = false;
 	m_IsActionState = false;
+	m_IsMoveState = false;
+	m_IsStopState = true;
 }
 void Character::MoveOff()
 {
+	m_MoveAnimationOn = false;
+	m_IsActionState = false;
 	m_IsMoveState = false;
+	m_IsStopState = true;
 }
 void Character::StopOff()
 {
-	m_IsStopState = false;
+	m_StopAnimationOn = false;
+}
+
+void Character::AttackOn()
+{
+	m_ActionAnimationOn = true;
+}
+
+void Character::MoveOn()
+{
+	m_MoveAnimationOn = true;
+}
+
+void Character::StopOn()
+{
+	m_StopAnimationOn = true;
 }

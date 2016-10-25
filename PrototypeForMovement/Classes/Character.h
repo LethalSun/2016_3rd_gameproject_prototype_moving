@@ -23,11 +23,18 @@ public:
 	void AttackOff();
 	void MoveOff();
 	void StopOff();
+	void AttackOn();
+	void MoveOn();
+	void StopOn();
 private:
 	//공격,이동,정지 상태를 나타내는 변수
 	bool m_IsActionState;
 	bool m_IsMoveState;
 	bool m_IsStopState;
+	//애니메이션중인지 아닌지를 나타내는 변수
+	bool m_ActionAnimationOn;
+	bool m_MoveAnimationOn;
+	bool m_StopAnimationOn;
 	//입력플래그를 처리하기 위한 변수
 	int m_Input;
 	int m_ActionInput;
