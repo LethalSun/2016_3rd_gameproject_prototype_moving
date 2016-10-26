@@ -24,9 +24,9 @@ Animate* MakeAnimation::AnimationMove(int direction)
 //정지상태의 텍스쳐를 만든다.
 Animate* MakeAnimation::AnimationStop(int direction)
 {
-	int imageStartNumber = direction;
+	int imageStartNumber = direction%10;
 	Vector<SpriteFrame*> animFrame;
-	sprintf(m_Buffer, "%sstop%d%s", m_FrameName, direction, m_FileNameExtention);
+	sprintf(m_Buffer, "%sstop%d%s", m_FrameName, imageStartNumber, m_FileNameExtention);
 	auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_Buffer);
 	animFrame.pushBack(frame);
 	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BFE_IDCA_DEFINE::STOP_ANIMATION_SPEED);
@@ -129,42 +129,42 @@ Animate * MakeAnimation::GetStopAnimation(int direction)
 {
 	switch (direction)
 	{
-	case BFE_IDCA_DEFINE::ACTIONS::TOP:
-	{
-		return m_pStopUp;
-	}
-	case BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT:
-	{
-		return m_pStopUpLeft;
-	}
-	case BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH:
-	{
-		return m_pStopUpRight;
-	}
-	case BFE_IDCA_DEFINE::ACTIONS::RIGHT:
-	{
-		return m_pStopRight;
-	}
-	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT:
-	{
-		return m_pStopDownRight;
-	}
-	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM:
-	{
-		return m_pStopDown;
-	}
-	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT:
-	{
-		return m_pStopDownLeft;
-	}
-	case BFE_IDCA_DEFINE::ACTIONS::LEFT:
-	{
-		return m_pStopLeft;
-	}
-	default:
-	{
-		return nullptr;
-	}
+		case BFE_IDCA_DEFINE::ACTIONS::TOP:
+		{
+			return m_pStopUp;
+		}
+		case BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT:
+		{
+			return m_pStopUpLeft;
+		}
+		case BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH:
+		{
+			return m_pStopUpRight;
+		}
+		case BFE_IDCA_DEFINE::ACTIONS::RIGHT:
+		{
+			return m_pStopRight;
+		}
+		case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT:
+		{
+			return m_pStopDownRight;
+		}
+		case BFE_IDCA_DEFINE::ACTIONS::BOTTOM:
+		{
+			return m_pStopDown;
+		}
+		case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT:
+		{
+			return m_pStopDownLeft;
+		}
+		case BFE_IDCA_DEFINE::ACTIONS::LEFT:
+		{
+			return m_pStopLeft;
+		}
+		default:
+		{
+			return nullptr;
+		}
 	}
 	return nullptr;
 }
