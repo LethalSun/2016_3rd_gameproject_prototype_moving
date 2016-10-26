@@ -70,10 +70,6 @@ void PrototypeScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event * event)
 	{
 		m_keyboardInput |= BFE_IDCA_DEFINE::INPUT::KEY_A;
 	}
-
-	char buffer[256];
-	sprintf(buffer, "inputKeyboard: %d", m_keyboardInput);
-	cocos2d::log(buffer);
 }
 
 void PrototypeScene::onKeyReleased(EventKeyboard::KeyCode keyCode, Event * event)

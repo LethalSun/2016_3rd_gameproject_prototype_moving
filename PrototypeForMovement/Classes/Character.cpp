@@ -4,12 +4,6 @@
 #include "EnumDefines.h"
 #include <bitset>
 
-void BeepThread()
-{
-	auto beepThread = std::thread([]() {Beep(1000, 100); });
-	beepThread.detach();
-}
-
 Character::Character()
 {
 }
@@ -41,9 +35,7 @@ void Character::initOptions(const char const* filename, const char const* extent
 	this->scheduleUpdate();
 	m_pMakeAnimation = new MakeAnimation(BFE_IDCA_DEFINE::ARCH_BISHOP_FILE_NAME, BFE_IDCA_DEFINE::SPRITE_FRAME_FILE_EXTENTION);
 	//공격,이동,정지 상태를 나타내는 변수 초기화
-//	m_IsActionState = false;
-//	m_IsMoveState = false;
-//	m_IsStopState = true;
+	m_State = 0;
 	//애니메이션중인지 아닌지를 나타내는 변수
 	m_ActionAnimationOn = false;
 	m_MoveAnimationOn = false;
@@ -56,7 +48,6 @@ void Character::initOptions(const char const* filename, const char const* extent
 	m_BeforeDirection = BFE_IDCA_DEFINE::ACTIONS::NO_MOVE;
 	m_UnitVector[0] = 0;
 	m_UnitVector[1] = 0;
-	//this->addChild(m_pMakeAnimation);
 }
 //키보드 입력비트 플래그를 액션부분과,움직임부분으로 나누고 방향을 설정해 준다. 정지시에 사용할 이전 방향에 대한 처리도 같이함.
 void Character::SetInput(int inputFromScene)
@@ -139,9 +130,6 @@ void Character::SetInput(int inputFromScene)
 		break;
 	}
 	}
-	//	char buffer[256];
-	//	sprintf(buffer, "inputCharacter: %d,%d", m_CurDirection, m_MoveInput);
-	//	cocos2d::log(buffer);
 }
 //입력에 따라서 현재의 상태를 파악한다.
 void Character::CheckCharacterState()
@@ -190,7 +178,6 @@ void Character::Move(float dt)
 	{
 		return;
 	}
-	//BeepThread();
 	stopAllActions();
 	auto animate = m_pMakeAnimation->AnimationMove(m_CurDirection);
 	auto moveOn = CallFunc::create(CC_CALLBACK_0(Character::MoveOn, this));
@@ -225,8 +212,8 @@ void Character::update(float dt)
 		Move(dt);
 		auto currentposition = getPosition();
 
-		auto deltaX = (m_UnitVector[0] * (BFE_IDCA_DEFINE::PIXEL_PER_SECOND)*dt);
-		auto deltaY = (m_UnitVector[1] * (BFE_IDCA_DEFINE::PIXEL_PER_SECOND)*dt);
+		auto deltaX = (m_UnitVector[0] * (BFE_IDCA_DEFINE::VELOCITY)*dt);
+		auto deltaY = (m_UnitVector[1] * (BFE_IDCA_DEFINE::VELOCITY)*dt);
 
 		setPositionX(currentposition.x + deltaX);
 		setPositionY(currentposition.y + deltaY);
@@ -247,17 +234,11 @@ void Character::AttackOff()
 {
 	m_ActionAnimationOn = false;
 	m_State = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP;
-	//	m_IsActionState = false;
-	//	m_IsMoveState = false;
-	//	m_IsStopState = true;
 }
 void Character::MoveOff()
 {
 	m_MoveAnimationOn = false;
 	m_State = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP;
-	//	m_IsActionState = false;
-	//	m_IsMoveState = false;
-	//	m_IsStopState = true;
 }
 void Character::StopOff()
 {

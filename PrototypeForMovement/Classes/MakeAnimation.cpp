@@ -2,16 +2,6 @@
 #include "MakeAnimation.h"
 #include "EnumDefines.h"
 
-//bool MakeAnimation::init()
-//{
-//	if (!Node::init())
-//	{
-//		return false;
-//	}
-//
-//	return true;
-//}
-//
 //이동 애니메이션을 만든다.
 Animate* MakeAnimation::AnimationMove(int direction)
 {
@@ -28,8 +18,6 @@ Animate* MakeAnimation::AnimationMove(int direction)
 	}
 	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BFE_IDCA_DEFINE::ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
-	//auto AnimationOff = CallFunc::create(CC_CALLBACK_0(MakeAnimation::MoveAnimationEnd, this));
-	//auto sequenceAnimation = Sequence::create(m_pAnimate, AnimationOff, NULL);
 	return m_pAnimate;
 }
 
@@ -43,7 +31,6 @@ Animate* MakeAnimation::AnimationStop(int direction)
 	animFrame.pushBack(frame);
 	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BFE_IDCA_DEFINE::STOP_ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
-	//sprintf(m_Buffer, "%sstop%d%s", m_FrameName, direction, m_FileNameExtention);
 	return m_pAnimate;
 }
 
@@ -70,9 +57,6 @@ Animate* MakeAnimation::AnimationAttack(int direction)
 
 	m_pAnimation = Animation::createWithSpriteFrames(animFrame, BFE_IDCA_DEFINE::HIT_ANIMATION_SPEED);
 	m_pAnimate = Animate::create(m_pAnimation);
-	//auto AnimationOff = CallFunc::create(CC_CALLBACK_0(MakeAnimation::AttackAnimationEnd, this));
-//	auto sequenceAnimation = Sequence::create(m_pAnimate, AnimationOff, NULL);
-
 	return m_pAnimate;
 }
 
@@ -213,34 +197,4 @@ MakeAnimation::MakeAnimation(const char const *fileName, const char const * file
 
 MakeAnimation::~MakeAnimation()
 {
-	//	delete m_pMoveUp;
-	//	delete m_pMoveDown;
-	//	delete m_pMoveRight;
-	//	delete m_pMoveLeft;
-	//	delete m_pMoveUpLeft;
-	//	delete m_pMoveUpRight;
-	//	delete m_pMoveDownRight;
-	//	delete m_pMoveDownLeft;
-	//	delete m_pAttackUpUpLeft;
-	//	delete m_pAttackLeftDownLeft;
-	//	delete m_pAttackDownDownRight;
-	//	delete m_pAttackRightUpRight;
-	//	delete m_pStopUp;
-	//	delete m_pStopDown;
-	//	delete m_pStopRight;
-	//	delete m_pStopLeft;
-	//	delete m_pStopUpLeft;
-	//	delete m_pStopUpRight;
-	//	delete m_pStopDownRight;
-	//	delete m_pStopDownLeft;
 }
-
-//void MakeAnimation::AttackAnimationEnd()
-//{
-//	m_AttackOn = false;
-//}
-//
-//void MakeAnimation::MoveAnimationEnd()
-//{
-//	m_MoveOn = false;
-//}

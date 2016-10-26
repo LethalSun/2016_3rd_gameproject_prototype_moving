@@ -4,8 +4,6 @@ class MakeAnimation //:public Node
 {
 public:
 
-	//virtual bool init();
-	//CREATE_FUNC(MakeAnimation);
 	//이동 애니메이션을 만들어 만든다.
 	Animate* AnimationMove(int direction);
 	//정지상태의 텍스쳐를 만든다.
@@ -52,6 +50,4 @@ private:
 
 	Animation        *m_pAnimation;
 	Animate          *m_pAnimate;
-	//void AttackAnimationEnd();
-	//void MoveAnimationEnd();
 };

@@ -21,7 +21,6 @@ namespace BFE_IDCA_DEFINE
 		NO_MOVE = 0,
 		TOP = 1,
 		BOTTOM = 2,
-		//ERROR_INPUT1 = 3,
 		LEFT = 8,
 		TOP_RIGTH = 5,
 		BOTTOM_RIGHT = 6,
@@ -31,15 +30,9 @@ namespace BFE_IDCA_DEFINE
 		DIRECTION_BIT = 15,
 		ATTACK = 16,
 		GET_ACTION_BIT = 240
-		//ERROR_INPUT2 = 12,
-		//ERROR_INPUT3 = 7,
-		//ERROR_INPUT4 = 11,
-		//ERROR_INPUT5 = 13,
-		//ERROR_INPUT6 = 14,
-		//ERROR_INPUT7 = 15,
 	};
 
-	const int PIXEL_PER_SECOND = 100;
+	const int VELOCITY = 100;
 	const int NUM_OF_SPRITE_FILE_PER_ACTIONS = 10;
 	const float STOP_ANIMATION_SPEED = 0.005f;
 	const float ANIMATION_SPEED = 0.1f;
