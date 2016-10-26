@@ -23,7 +23,7 @@ bool PrototypeScene::init()
 	m_keyboardInput = 0;
 	//캐릭터 애드차일드
 
-	m_pCharacter = Character::create(BE_IDCA_DEFINES::ARCH_BISHOP_FILE_NAME, BE_IDCA_DEFINES::SPRITE_FRAME_FILE_EXTENTION);
+	m_pCharacter = Character::create(BFE_IDCA_DEFINE::ARCH_BISHOP_FILE_NAME, BFE_IDCA_DEFINE::SPRITE_FRAME_FILE_EXTENTION);
 
 	m_pCharacter->setPosition(Vec2(100, 100));
 	this->addChild(m_pCharacter);
@@ -48,27 +48,27 @@ void PrototypeScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event * event)
 {
 	if (keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW)
 	{
-		m_keyboardInput |= BE_IDCA_KEY_BOARD::INPUT::UP;
+		m_keyboardInput |= BFE_IDCA_DEFINE::INPUT::KEY_UP;
 	}
 
 	else if (keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW)
 	{
-		m_keyboardInput |= BE_IDCA_KEY_BOARD::INPUT::DOWN;
+		m_keyboardInput |= BFE_IDCA_DEFINE::INPUT::KEY_DOWN;
 	}
 
 	else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
 	{
-		m_keyboardInput |= BE_IDCA_KEY_BOARD::INPUT::RIGHT;
+		m_keyboardInput |= BFE_IDCA_DEFINE::INPUT::KEY_RIGHT;
 	}
 
 	else if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
 	{
-		m_keyboardInput |= BE_IDCA_KEY_BOARD::INPUT::LEFT;
+		m_keyboardInput |= BFE_IDCA_DEFINE::INPUT::KEY_LEFT;
 	}
 
 	else if (keyCode == EventKeyboard::KeyCode::KEY_A)
 	{
-		m_keyboardInput |= BE_IDCA_KEY_BOARD::INPUT::A;
+		m_keyboardInput |= BFE_IDCA_DEFINE::INPUT::KEY_A;
 	}
 
 	char buffer[256];
@@ -80,27 +80,27 @@ void PrototypeScene::onKeyReleased(EventKeyboard::KeyCode keyCode, Event * event
 {
 	if (keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW)
 	{
-		m_keyboardInput &= ~(KEY_BOARD_INPUT::UP);
+		m_keyboardInput &= ~(BFE_IDCA_DEFINE::INPUT::KEY_UP);
 	}
 
 	else if (keyCode == EventKeyboard::KeyCode::KEY_DOWN_ARROW)
 	{
-		m_keyboardInput &= ~(KEY_BOARD_INPUT::DOWN);
+		m_keyboardInput &= ~(BFE_IDCA_DEFINE::INPUT::KEY_DOWN);
 	}
 
 	else if (keyCode == EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
 	{
-		m_keyboardInput &= ~(KEY_BOARD_INPUT::RIGHT);
+		m_keyboardInput &= ~(BFE_IDCA_DEFINE::INPUT::KEY_RIGHT);
 	}
 
 	else if (keyCode == EventKeyboard::KeyCode::KEY_LEFT_ARROW)
 	{
-		m_keyboardInput &= ~(KEY_BOARD_INPUT::LEFT);
+		m_keyboardInput &= ~(BFE_IDCA_DEFINE::INPUT::KEY_LEFT);
 	}
 
 	else if (keyCode == EventKeyboard::KeyCode::KEY_A)
 	{
-		m_keyboardInput &= ~(KEY_BOARD_INPUT::A);
+		m_keyboardInput &= ~(BFE_IDCA_DEFINE::INPUT::KEY_A);
 	}
 }
 

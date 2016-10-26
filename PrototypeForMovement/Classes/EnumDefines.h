@@ -1,18 +1,22 @@
 #pragma once
-namespace BE_IDCA_KEY_BOARD
+namespace BFE_IDCA_DEFINE
 {
+	enum CHARACTER_STATE
+	{
+		STATE_STOP = 0,
+		STATE_MOVE = 1,
+		STATE_ATTACK = 2
+	};
+
 	enum INPUT
 	{
-		UP = 1,
-		DOWN = 2,
-		RIGHT = 4,
-		LEFT = 8,
-		A = 16
+		KEY_UP = 1,
+		KEY_DOWN = 2,
+		KEY_RIGHT = 4,
+		KEY_LEFT = 8,
+		KEY_A = 16
 	};
-}
 
-namespace BE_IDCA_ACTIONS
-{
 	enum ACTIONS {
 		NO_MOVE = 0,
 		TOP = 1,
@@ -34,9 +38,7 @@ namespace BE_IDCA_ACTIONS
 		//ERROR_INPUT6 = 14,
 		//ERROR_INPUT7 = 15,
 	};
-}
-namespace BE_IDCA_DEFINES
-{
+
 	const int PIXEL_PER_SECOND = 100;
 	const int NUM_OF_SPRITE_FILE_PER_ACTIONS = 10;
 	const float ANIMATION_SPEED = 0.1f;
