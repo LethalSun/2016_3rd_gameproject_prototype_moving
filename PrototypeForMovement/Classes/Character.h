@@ -36,7 +36,7 @@ private:
 	//	bool m_IsActionState;
 	//	bool m_IsMoveState;
 	//	bool m_IsStopState;
-		//애니메이션중인지 아닌지를 나타내는 변수
+	//애니메이션중인지 아닌지를 나타내는 변수
 	bool m_ActionAnimationOn;
 	bool m_MoveAnimationOn;
 	bool m_StopAnimationOn;
