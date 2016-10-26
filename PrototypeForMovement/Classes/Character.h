@@ -27,6 +27,11 @@ public:
 	void MoveOn();
 	void StopOn();
 private:
+	bool IsTopOn(int m_MoveInput);
+	bool IsBottomOn(int m_MoveInput);
+	bool IsLeftOn(int m_MoveInput);
+	bool IsRightOn(int m_MoveInput);
+	bool IsErrorInput(int m_MoveInput);
 	//공격,이동,정지 상태를 나타내는 변수
 	int m_State;
 	int m_BeforeState;

@@ -55,81 +55,45 @@ void Character::SetInput(int inputFromScene)
 	m_Input = inputFromScene;
 	m_ActionInput = m_Input & BFE_IDCA_DEFINE::ACTIONS::GET_ACTION_BIT;
 	m_MoveInput = m_Input & BFE_IDCA_DEFINE::ACTIONS::DIRECTION_BIT;
-	switch (m_MoveInput)
+
+	if (IsErrorInput(m_MoveInput))
 	{
-		case BFE_IDCA_DEFINE::ACTIONS::TOP:
-		{
-			//if?
-			m_UnitVector[0] = 0;
-			m_UnitVector[1] = 1;
-			m_BeforeDirection = m_CurDirection;
-			m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::TOP;
-			break;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH:
-		{
-			m_UnitVector[0] = 1;
-			m_UnitVector[1] = 1;
-			m_BeforeDirection = m_CurDirection;
-			m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH;
-			break;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::RIGHT:
-		{
-			m_UnitVector[0] = 1;
-			m_UnitVector[1] = 0;
-			m_BeforeDirection = m_CurDirection;
-			m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::RIGHT;
-			break;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT:
-		{
-			m_UnitVector[0] = 1;
-			m_UnitVector[1] = -1;
-			m_BeforeDirection = m_CurDirection;
-			m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT;
-			break;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::BOTTOM:
-		{
-			m_UnitVector[0] = 0;
-			m_UnitVector[1] = -1;
-			m_BeforeDirection = m_CurDirection;
-			m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::BOTTOM;
-			break;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT:
-		{
-			m_UnitVector[0] = -1;
-			m_UnitVector[1] = -1;
-			m_BeforeDirection = m_CurDirection;
-			m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT;
-			break;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::LEFT:
-		{
-			m_UnitVector[0] = -1;
-			m_UnitVector[1] = 0;
-			m_BeforeDirection = m_CurDirection;
-			m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::LEFT;
-			break;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT:
-		{
-			m_UnitVector[0] = -1;
-			m_UnitVector[1] = 1;
-			m_BeforeDirection = m_CurDirection;
-			m_CurDirection = BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT;
-			break;
-		}
-		default:
-		{
-			m_MoveInput = BFE_IDCA_DEFINE::ACTIONS::NO_MOVE;
-			m_CurDirection = m_BeforeDirection;
-			m_UnitVector[0] = 0;
-			m_UnitVector[1] = 0;
-			break;
-		}
+		m_MoveInput = BFE_IDCA_DEFINE::ACTIONS::NO_MOVE;
+		m_CurDirection = m_BeforeDirection;
+
+		m_UnitVector[0] = 0;
+		m_UnitVector[1] = 0;
+
+		return;
+	}
+
+	m_BeforeDirection = m_CurDirection;
+	m_CurDirection = m_MoveInput;
+
+	if (IsTopOn(m_MoveInput))
+	{
+		m_UnitVector[1] = 1;
+	}
+	else if (IsBottomOn(m_MoveInput))
+	{
+		m_UnitVector[1] = -1;
+	}
+	else
+	{
+		m_UnitVector[1] = 0;
+	}
+
+	if (IsLeftOn(m_MoveInput))
+	{
+		m_UnitVector[0] = -1;
+	}
+	else if (IsRightOn(m_MoveInput))
+	{
+		m_UnitVector[0] = 1;
+	}
+	else
+	{
+		m_UnitVector[0] = 0;
 	}
 }
 //입력에 따라서 현재의 상태를 파악한다.
@@ -260,4 +224,47 @@ void Character::MoveOn()
 void Character::StopOn()
 {
 	m_StopAnimationOn = true;
+}
+
+bool Character::IsTopOn(int m_MoveInput)
+{
+	return m_MoveInput & BFE_IDCA_DEFINE::ACTIONS::TOP;
+}
+
+bool Character::IsBottomOn(int m_MoveInput)
+{
+	return m_MoveInput & BFE_IDCA_DEFINE::ACTIONS::BOTTOM;
+}
+
+bool Character::IsLeftOn(int m_MoveInput)
+{
+	return m_MoveInput & BFE_IDCA_DEFINE::ACTIONS::LEFT;
+}
+
+bool Character::IsRightOn(int m_MoveInput)
+{
+	return m_MoveInput & BFE_IDCA_DEFINE::ACTIONS::RIGHT;
+}
+
+bool Character::IsErrorInput(int m_MoveInput)
+{
+	bool isError = false;
+	if (m_MoveInput == 0)
+	{
+		isError = true;
+	}
+	else if (m_MoveInput == 3)
+	{
+		isError = true;
+	}
+	else if (m_MoveInput == 7)
+	{
+		isError = true;
+	}
+	else if (m_MoveInput >= 11 && m_MoveInput <= 15)
+	{
+		isError = true;
+	}
+
+	return isError;
 }
