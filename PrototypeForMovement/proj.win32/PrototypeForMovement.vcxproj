@@ -149,6 +149,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\Character.cpp" />
     <ClCompile Include="..\Classes\CharacterManage.cpp" />
+    <ClCompile Include="..\Classes\EnumDefines.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\KeyboardLayer.cpp" />
     <ClCompile Include="..\Classes\MakeAnimation.cpp" />
@@ -166,6 +167,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\EnumDefines.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\KeyboardLayer.h" />
+    <ClInclude Include="..\Classes\Macros.h" />
     <ClInclude Include="..\Classes\MakeAnimation.h" />
     <ClInclude Include="..\Classes\pch.h" />
     <ClInclude Include="..\Classes\PrototypeScene.h" />

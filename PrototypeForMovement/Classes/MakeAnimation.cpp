@@ -2,6 +2,43 @@
 #include "MakeAnimation.h"
 #include "EnumDefines.h"
 
+bool MakeAnimation::init(const char * fileName, const char * fileNameExtention)
+{
+	if (!Node::init())
+	{
+		return false;
+	}
+	sprintf(m_FileNameExtention, "%s", fileNameExtention);
+	sprintf(m_FrameName, "%s", fileName);
+	m_pAnimateArr[MoveUp] = AnimationMove(1);
+	m_pAnimateArr[MoveDown] = AnimationMove(2);
+	m_pAnimateArr[MoveRight] = AnimationMove(4);
+	m_pAnimateArr[MoveLeft] = AnimationMove(8);
+	m_pAnimateArr[MoveUpLeft] = AnimationMove(9);
+	m_pAnimateArr[MoveUpRight] = AnimationMove(5);
+	m_pAnimateArr[MoveDownRight] = AnimationMove(6);
+	m_pAnimateArr[MoveDownLeft] = AnimationMove(10);
+	m_pAnimateArr[AttackUpUpLeft] = AnimationAttack(1);
+	m_pAnimateArr[AttackLeftDownLeft] = AnimationAttack(8);
+	m_pAnimateArr[AttackDownDownRight] = AnimationAttack(2);
+	m_pAnimateArr[AttackRightUpRight] = AnimationAttack(4);
+	m_pAnimateArr[StopUp] = AnimationStop(1);
+	m_pAnimateArr[StopDown] = AnimationStop(2);
+	m_pAnimateArr[StopRight] = AnimationStop(4);
+	m_pAnimateArr[StopLeft] = AnimationStop(8);
+	m_pAnimateArr[StopUpLeft] = AnimationStop(9);
+	m_pAnimateArr[StopUpRight] = AnimationStop(5);
+	m_pAnimateArr[StopDownRight] = AnimationStop(6);
+	m_pAnimateArr[StopDownLeft] = AnimationStop(0);
+
+	for (int i = 0; i < AnimateNum; ++i)
+	{
+		//addChild(m_pAnimateArr[i]);
+	}
+
+	return true;
+}
+
 //이동 애니메이션을 만든다.
 Animate* MakeAnimation::AnimationMove(int direction)
 {
@@ -24,7 +61,7 @@ Animate* MakeAnimation::AnimationMove(int direction)
 //정지상태의 텍스쳐를 만든다.
 Animate* MakeAnimation::AnimationStop(int direction)
 {
-	int imageStartNumber = direction%10;
+	int imageStartNumber = direction % 10;
 	Vector<SpriteFrame*> animFrame;
 	sprintf(m_Buffer, "%sstop%d%s", m_FrameName, imageStartNumber, m_FileNameExtention);
 	auto frame = SpriteFrameCache::getInstance()->getSpriteFrameByName(m_Buffer);
@@ -129,72 +166,68 @@ Animate * MakeAnimation::GetStopAnimation(int direction)
 {
 	switch (direction)
 	{
-		case BFE_IDCA_DEFINE::ACTIONS::TOP:
-		{
-			return m_pStopUp;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT:
-		{
-			return m_pStopUpLeft;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH:
-		{
-			return m_pStopUpRight;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::RIGHT:
-		{
-			return m_pStopRight;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT:
-		{
-			return m_pStopDownRight;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::BOTTOM:
-		{
-			return m_pStopDown;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT:
-		{
-			return m_pStopDownLeft;
-		}
-		case BFE_IDCA_DEFINE::ACTIONS::LEFT:
-		{
-			return m_pStopLeft;
-		}
-		default:
-		{
-			return nullptr;
-		}
+	case BFE_IDCA_DEFINE::ACTIONS::TOP:
+	{
+		return m_pStopUp;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT:
+	{
+		return m_pStopUpLeft;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH:
+	{
+		return m_pStopUpRight;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::RIGHT:
+	{
+		return m_pStopRight;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT:
+	{
+		return m_pStopDownRight;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM:
+	{
+		return m_pStopDown;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT:
+	{
+		return m_pStopDownLeft;
+	}
+	case BFE_IDCA_DEFINE::ACTIONS::LEFT:
+	{
+		return m_pStopLeft;
+	}
+	default:
+	{
+		return nullptr;
+	}
 	}
 	return nullptr;
 }
 
-MakeAnimation::MakeAnimation(const char const *fileName, const char const * fileNameExtention)
-{
-	sprintf(m_FileNameExtention, "%s", fileNameExtention);
-	sprintf(m_FrameName, "%s", fileName);
-	m_pMoveUp = AnimationMove(1);
-	m_pMoveDown = AnimationMove(2);
-	m_pMoveRight = AnimationMove(4);
-	m_pMoveLeft = AnimationMove(8);
-	m_pMoveUpLeft = AnimationMove(9);
-	m_pMoveUpRight = AnimationMove(5);
-	m_pMoveDownRight = AnimationMove(6);
-	m_pMoveDownLeft = AnimationMove(10);
-	m_pAttackUpUpLeft = AnimationAttack(1);
-	m_pAttackLeftDownLeft = AnimationAttack(8);
-	m_pAttackDownDownRight = AnimationAttack(2);
-	m_pAttackRightUpRight = AnimationAttack(4);
-	m_pStopUp = AnimationStop(1);
-	m_pStopDown = AnimationStop(2);
-	m_pStopRight = AnimationStop(4);
-	m_pStopLeft = AnimationStop(8);
-	m_pStopUpLeft = AnimationStop(9);
-	m_pStopUpRight = AnimationStop(5);
-	m_pStopDownRight = AnimationStop(6);
-	m_pStopDownLeft = AnimationStop(0);
-}
-
-MakeAnimation::~MakeAnimation()
-{
-}
+//MakeAnimation::MakeAnimation(const char const *fileName, const char const * fileNameExtention)
+//{
+//	sprintf(m_FileNameExtention, "%s", fileNameExtention);
+//	sprintf(m_FrameName, "%s", fileName);
+//	m_pMoveUp = AnimationMove(1);
+//	m_pMoveDown = AnimationMove(2);
+//	m_pMoveRight = AnimationMove(4);
+//	m_pMoveLeft = AnimationMove(8);
+//	m_pMoveUpLeft = AnimationMove(9);
+//	m_pMoveUpRight = AnimationMove(5);
+//	m_pMoveDownRight = AnimationMove(6);
+//	m_pMoveDownLeft = AnimationMove(10);
+//	m_pAttackUpUpLeft = AnimationAttack(1);
+//	m_pAttackLeftDownLeft = AnimationAttack(8);
+//	m_pAttackDownDownRight = AnimationAttack(2);
+//	m_pAttackRightUpRight = AnimationAttack(4);
+//	m_pStopUp = AnimationStop(1);
+//	m_pStopDown = AnimationStop(2);
+//	m_pStopRight = AnimationStop(4);
+//	m_pStopLeft = AnimationStop(8);
+//	m_pStopUpLeft = AnimationStop(9);
+//	m_pStopUpRight = AnimationStop(5);
+//	m_pStopDownRight = AnimationStop(6);
+//	m_pStopDownLeft = AnimationStop(0);
+//}

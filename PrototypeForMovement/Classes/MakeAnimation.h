@@ -1,8 +1,11 @@
 #pragma once
-
-class MakeAnimation //:public Node
+#include "Macros.h"
+USING_NS_CC;
+class MakeAnimation :public Node
 {
 public:
+	CREATE_FUNC_MAKE_ANIMATION(MakeAnimation);
+	virtual bool init(const char const *fileName, const char const * fileNameExtention);
 
 	//이동 애니메이션을 만들어 만든다.
 	Animate* AnimationMove(int direction);
@@ -17,9 +20,11 @@ public:
 	//정지 애니메이션을 반환한다.
 	Animate* GetStopAnimation(int direction);
 	//클래스를 초기화 한다.
-	MakeAnimation(const char const *fileName, const char const * fileNameExtention);
-	~MakeAnimation();
+	MakeAnimation() = default;
+	//MakeAnimation(const char const *fileName, const char const * fileNameExtention);
+	~MakeAnimation() = default;
 private:
+
 	//파일확장자
 	char m_FileNameExtention[10];
 	//파일이름
@@ -47,6 +52,17 @@ private:
 	Animate *m_pStopUpRight;
 	Animate *m_pStopDownRight;
 	Animate *m_pStopDownLeft;
+
+	enum AnimateType
+	{
+		MoveUp, MoveDown, MoveRight,
+		MoveLeft, MoveUpLeft, MoveUpRight,
+		MoveDownRight, MoveDownLeft, AttackUpUpLeft,
+		AttackLeftDownLeft, AttackDownDownRight, AttackRightUpRight,
+		StopUp, StopDown, StopRight, StopLeft, StopUpLeft, StopUpRight,
+		StopDownRight, StopDownLeft, AnimateNum
+	};
+	Animate *m_pAnimateArr[AnimateNum];
 
 	Animation        *m_pAnimation;
 	Animate          *m_pAnimate;

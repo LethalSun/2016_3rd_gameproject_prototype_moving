@@ -21,13 +21,13 @@ namespace BFE_IDCA_DEFINE
 		NO_MOVE = 0,
 		TOP = 1,
 		BOTTOM = 2,
-		LEFT = 8,
+		RIGHT = 4,
 		TOP_RIGTH = 5,
 		BOTTOM_RIGHT = 6,
-		RIGHT = 4,
+		LEFT = 8,
 		TOP_LEFT = 9,
 		BOTTOM_LEFT = 10,
-		DIRECTION_BIT = 15,
+		GET_DIRECTION_BIT = 15,
 		ATTACK = 16,
 		GET_ACTION_BIT = 240
 	};
@@ -39,7 +39,7 @@ namespace BFE_IDCA_DEFINE
 	const float HIT_ANIMATION_SPEED = 0.1f;
 	const int ATTACK_RANGE_X = 37;
 	const int ATTACK_RANGE_Y = 47;
-	const char ARCH_BISHOP_FILE_NAME[] = "archbishop";
-	const char SPRITE_FRAME_FILE_EXTENTION[] = ".png";
-	const char PLIST_FILE_NAME[] = "spriteFrameIdca.plist";
+	extern const char *ARCH_BISHOP_FILE_NAME;
+	extern const char *SPRITE_FRAME_FILE_EXTENTION;
+	extern const char *PLIST_FILE_NAME;
 }

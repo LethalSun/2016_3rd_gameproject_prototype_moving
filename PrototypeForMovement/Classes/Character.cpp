@@ -33,7 +33,8 @@ Character * Character::create(const char const* filename, const char const* exte
 void Character::initOptions(const char const* filename, const char const* extention)
 {
 	this->scheduleUpdate();
-	m_pMakeAnimation = new MakeAnimation(BFE_IDCA_DEFINE::ARCH_BISHOP_FILE_NAME, BFE_IDCA_DEFINE::SPRITE_FRAME_FILE_EXTENTION);
+	m_pMakeAnimation = MakeAnimation::create(BFE_IDCA_DEFINE::ARCH_BISHOP_FILE_NAME, BFE_IDCA_DEFINE::SPRITE_FRAME_FILE_EXTENTION);
+	addChild(m_pMakeAnimation);
 	//공격,이동,정지 상태를 나타내는 변수 초기화
 	m_State = 0;
 	//애니메이션중인지 아닌지를 나타내는 변수
@@ -54,7 +55,7 @@ void Character::SetInput(int inputFromScene)
 {
 	m_Input = inputFromScene;
 	m_ActionInput = m_Input & BFE_IDCA_DEFINE::ACTIONS::GET_ACTION_BIT;
-	m_MoveInput = m_Input & BFE_IDCA_DEFINE::ACTIONS::DIRECTION_BIT;
+	m_MoveInput = m_Input & BFE_IDCA_DEFINE::ACTIONS::GET_DIRECTION_BIT;
 
 	if (IsErrorInput(m_MoveInput))
 	{
