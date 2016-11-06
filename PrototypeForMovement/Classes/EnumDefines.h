@@ -32,6 +32,12 @@ namespace BFE_IDCA_DEFINE
 		GET_ACTION_BIT = 240
 	};
 
+	enum PHYSICS_CATEGORY
+	{
+		CHARACTER = 0,
+		ENEMY = 1,
+	};
+
 	const int VELOCITY = 100;
 	const int NUM_OF_SPRITE_FILE_PER_ACTIONS = 10;
 	const float STOP_ANIMATION_SPEED = 0.005f;

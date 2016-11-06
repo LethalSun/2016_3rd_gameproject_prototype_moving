@@ -7,6 +7,8 @@
 Scene * PrototypeScene::createScene()
 {
 	auto scene = Scene::createWithPhysics();
+	scene->getPhysicsWorld()->setGravity(Vec2(0, 0));
+	scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
 	auto layer = PrototypeScene::create();
 	scene->addChild(layer);
 
@@ -25,8 +27,25 @@ bool PrototypeScene::init()
 
 	m_pCharacter = Character::create(BFE_IDCA_DEFINE::ARCH_BISHOP_FILE_NAME, BFE_IDCA_DEFINE::SPRITE_FRAME_FILE_EXTENTION);
 
-	m_pCharacter->setPosition(Vec2(100, 100));
-	this->addChild(m_pCharacter);
+	m_pCharacter->setPosition(Vec2(100.0f, 100.0f));
+	addChild(m_pCharacter);
+	//
+	char buffer[256];
+	sprintf(buffer, "%sstop%d%s", BFE_IDCA_DEFINE::ARCH_BISHOP_FILE_NAME, 2, BFE_IDCA_DEFINE::SPRITE_FRAME_FILE_EXTENTION);
+	m_pMonster = Sprite::createWithSpriteFrameName(buffer);
+	m_pMonster->setPosition(Vec2(1000.0f, 600.0f));
+	addChild(m_pMonster);
+	//PhysicsBody character
+	auto physicsbody = PhysicsBody::createBox(Size(90.0f, 50.0f), PhysicsMaterial(0.1f, 1.0f, 0.0f));
+	physicsbody->setDynamic(false);
+	physicsbody->setPositionOffset(Vec2(50.0f, 10.0f));
+	m_pCharacter->setPhysicsBody(physicsbody);
+
+	//physicsbody = PhysicsBody::createBox(Size(90.0f, 50.0f), PhysicsMaterial(0.1f, 1.0f, 0.0f));
+	//physicsbody->setDynamic(false);
+	//physicsbody->setPositionOffset(Vec2(-50.0f, 10.0f));
+	//m_pCharacter->setPhysicsBody(physicsbody);
+
 	//이벤트 리스너
 	auto eventListener = EventListenerKeyboard::create();
 

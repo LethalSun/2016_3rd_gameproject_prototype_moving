@@ -100,6 +100,7 @@ void Character::SetInput(int inputFromScene)
 //입력에 따라서 현재의 상태를 파악한다.
 void Character::CheckCharacterState()
 {
+	log("state");
 	if (m_ActionAnimationOn == false)
 	{
 		if (m_ActionInput == BFE_IDCA_DEFINE::ACTIONS::ATTACK)
@@ -122,6 +123,9 @@ void Character::CheckCharacterState()
 	{
 		return;
 	}
+	char logBuffer[100];
+	sprintf(logBuffer, "m_CHARACTERSTATE:%d ", m_State);
+	cocos2d::log(logBuffer);
 }
 //공격모션을 스프라이트를 상속받은 이클래스에 넣어준다.
 void Character::Attack(float dt)
@@ -166,6 +170,7 @@ void Character::Stop(float dt)
 //매프레임마다 이스프라이트에 관련한 것들을 갱신한다. 상태 파악->모션
 void Character::update(float dt)
 {
+	cocos2d::log("UPDATE");
 	//상태 파악
 	CheckCharacterState();
 	//모션
