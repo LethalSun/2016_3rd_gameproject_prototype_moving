@@ -27,11 +27,16 @@ public:
 	void MoveOn();
 	void StopOn();
 private:
+	//상태를 확인 하는함수
 	bool IsTopOn(int m_MoveInput);
 	bool IsBottomOn(int m_MoveInput);
 	bool IsLeftOn(int m_MoveInput);
 	bool IsRightOn(int m_MoveInput);
 	bool IsErrorInput(int m_MoveInput);
+	//PHYSICSBODY를 설정하는 함수
+	void SetPhysicsBody();
+	void DeletePhysicsBody();
+
 	//공격,이동,정지 상태를 나타내는 변수
 	int m_State;
 	int m_BeforeState;
@@ -52,3 +57,13 @@ private:
 	Character();
 	~Character();
 };
+
+/*
+옆 w28,h91
+뒤 w37,h88
+앞 w38,h90
+앞대각공 w77,h81
+뒤 대각공 w80,h83
+대각위 w36,h93
+대각아래 w40,h92
+*/

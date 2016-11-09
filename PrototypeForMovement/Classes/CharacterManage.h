@@ -1,5 +1,4 @@
 #pragma once
-class UserClass;
 
 class CharacterManage :public Node
 {
@@ -15,9 +14,4 @@ public:
 	void Update(float delta);
 
 private:
-	Vec4 m_archBishopInfo;
-	Vec4 m_monsterInfo;
-	UserClass *m_archBishop;
-	UserClass *m_monster;
-	unsigned int m_keyboardDirection;
 };

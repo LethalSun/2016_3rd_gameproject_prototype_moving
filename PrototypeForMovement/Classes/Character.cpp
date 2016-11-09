@@ -206,6 +206,7 @@ void Character::AttackOff()
 {
 	m_ActionAnimationOn = false;
 	m_State = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP;
+	DeletePhysicsBody();
 }
 void Character::MoveOff()
 {
@@ -220,6 +221,7 @@ void Character::StopOff()
 void Character::AttackOn()
 {
 	m_ActionAnimationOn = true;
+	SetPhysicsBody();
 }
 
 void Character::MoveOn()
@@ -273,4 +275,20 @@ bool Character::IsErrorInput(int m_MoveInput)
 	}
 
 	return isError;
+}
+
+void Character::SetPhysicsBody()
+{
+	auto physicsbody = PhysicsBody::createBox(Size(90.0f, 50.0f), PhysicsMaterial(0.1f, 1.0f, 0.0f));
+	physicsbody->setDynamic(false);
+	physicsbody->setPositionOffset(Vec2(-50.0f, 10.0f));
+	setPhysicsBody(physicsbody);
+}
+
+void Character::DeletePhysicsBody()
+{
+	auto physicsbody = PhysicsBody::createBox(Size(0.0f, 0.0f), PhysicsMaterial(0.1f, 1.0f, 0.0f));
+	physicsbody->setDynamic(false);
+	physicsbody->setPositionOffset(Vec2(-50.0f, 10.0f));
+	setPhysicsBody(physicsbody);
 }
