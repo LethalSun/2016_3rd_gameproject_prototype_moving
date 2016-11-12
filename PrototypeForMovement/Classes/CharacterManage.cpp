@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CharacterManage.h"
-#include "UserClass.h"
+#include "character.h"
 
 Scene* CharacterManage::createScene()
 {
@@ -17,29 +17,29 @@ bool CharacterManage::init()
 	{
 		return false;
 	}
-	m_archBishop = UserClass::create();
-	this->addChild(m_archBishop);
-	m_monster = UserClass::create();
-	m_monster->IAmMonster();
-	m_monster->setPosition(Vec2(500, 500));
-	addChild(m_monster);
+	m_CharacterPosition = Vec2(0, 0);
+	m_CharacterAttackDirection = Vec2(0, 0);
+	m_CharacterAttackRange = Vec2(0, 0);
+	m_TargetPosition = Vec2(0, 0);
 	return true;
-}
-
-void CharacterManage::SetKeyboardInput(const unsigned int &keyboardDirection)
-{
-	m_keyboardDirection = keyboardDirection;
-}
-
-void CharacterManage::CheckHit()
-{
-	//if(((m_archBishopInfo.x+15)<(m_monsterInfo.x-15))&&((m_archBishopInfo.x+m_archBishopInfo.z)>()))
 }
 
 void CharacterManage::Update(float delta)
 {
-	m_archBishop->InterpretKeyboardInput(m_keyboardDirection);
-	m_archBishopInfo = m_archBishop->GetActionInfo();
-	m_monsterInfo = m_monster->GetActionInfo();
-	m_archBishop->MoveUserClass(delta);
+}
+
+void CharacterManage::GetCharacterInfo(Character * character)
+{
+	m_CharacterPosition = character->getPosition();
+	m_CharacterAttackDirection = character->GetCurrentDitection();
+	m_CharacterAttackRange = character->GetAttackRange();
+}
+
+void CharacterManage::GetSpriteInfo(Sprite * sprite)
+{
+	m_TargetPosition = sprite->getPosition();
+}
+
+void CharacterManage::CheckHit()
+{
 }

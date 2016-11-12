@@ -1,5 +1,5 @@
 #pragma once
-class UserClass;
+class Character;
 
 class CharacterManage :public Node
 {
@@ -10,14 +10,15 @@ public:
 
 	CREATE_FUNC(CharacterManage);
 
-	void SetKeyboardInput(const unsigned int &keyboardDirection);
-	void CheckHit();
 	void Update(float delta);
-
+	void GetCharacterInfo(Character* character);
+	void GetSpriteInfo(Sprite* sprite);
+	void CheckHit();
 private:
-	Vec4 m_archBishopInfo;
-	Vec4 m_monsterInfo;
-	UserClass *m_archBishop;
-	UserClass *m_monster;
-	unsigned int m_keyboardDirection;
+	Vec2 m_CharacterPosition;
+	Vec2 m_CharacterAttackDirection;
+	Vec2 m_CharacterAttackRange;
+	Vec2 m_CharacterBeAttackedBox;
+	Vec2 m_TargetPosition;
+	Vec2 m_TargetBeAttackefBox
 };

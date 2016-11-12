@@ -31,7 +31,8 @@ namespace BFE_IDCA_DEFINE
 		ATTACK = 16,
 		GET_ACTION_BIT = 240
 	};
-
+	const float ARCH_BISHOP_ATTACK_RANGE_X = 46.0f;
+	const float ARCH_BISHOP_ATTACK_RANGE_Y = 76.0f;
 	const int VELOCITY = 100;
 	const int NUM_OF_SPRITE_FILE_PER_ACTIONS = 10;
 	const float STOP_ANIMATION_SPEED = 0.005f;
