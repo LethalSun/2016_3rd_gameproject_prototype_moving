@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "PrototypeScene.h"
 #include "Character.h"
+#include "CharacterManage.h"
 #include "EnumDefines.h"
 #include <bitset>
 
@@ -21,8 +22,9 @@ bool PrototypeScene::init()
 	}
 	//변수 초기화
 	m_keyboardInput = 0;
+	m_pCharacterManage = CharacterManage::create();
+	addChild(m_pCharacterManage);
 	//캐릭터 애드차일드
-
 	m_pCharacter = Character::create(BFE_IDCA_DEFINE::ARCH_BISHOP_FILE_NAME, BFE_IDCA_DEFINE::SPRITE_FRAME_FILE_EXTENTION);
 	m_pCharacter->setPosition(Vec2(100, 100));
 	addChild(m_pCharacter);
@@ -57,6 +59,25 @@ bool PrototypeScene::init()
 void PrototypeScene::update(float delta)
 {
 	m_pCharacter->SetInput(m_keyboardInput);
+	m_pCharacterManage->GetCharacterInfo(m_pCharacter);
+	if (m_pMonster != nullptr)
+	{
+		
+		m_pCharacterManage->GetSpriteInfo(m_pMonster);
+		bool hit = false;
+		
+		hit = m_pCharacterManage->GetHitInfo();
+
+		char buffer[100];
+		sprintf(buffer, "hit = %d", hit);
+		cocos2d::log(buffer);
+		
+		if ( hit == true)
+		{
+			m_pMonster->removeFromParent();
+			m_pMonster = nullptr;
+		}
+	}
 }
 
 void PrototypeScene::onKeyPressed(EventKeyboard::KeyCode keyCode, Event * event)

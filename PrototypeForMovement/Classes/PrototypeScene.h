@@ -1,6 +1,7 @@
 #pragma once
 
 class Character;
+class CharacterManage;
 
 class PrototypeScene :public Layer
 {
@@ -27,6 +28,7 @@ private:
 	Character *m_pCharacter;
 	Sprite *m_pMonster;
 	Sprite *m_pMonster1;
+	CharacterManage *m_pCharacterManage;
 	PrototypeScene();
 	~PrototypeScene();
 };

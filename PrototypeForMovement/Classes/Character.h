@@ -28,6 +28,7 @@ public:
 	void StopOn();
 	Vec2 GetCurrentDitection();
 	Vec2 GetAttackRange();
+	int GetCharacterState();
 private:
 	//공격범위
 	Vec2 m_AttackRange;

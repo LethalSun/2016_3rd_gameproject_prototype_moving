@@ -272,6 +272,11 @@ Vec2 Character::GetAttackRange()
 	return m_AttackRange;
 }
 
+int Character::GetCharacterState()
+{
+	return m_State;
+}
+
 bool Character::IsTopOn(int m_MoveInput)
 {
 	return m_MoveInput & BFE_IDCA_DEFINE::ACTIONS::TOP;

@@ -99,7 +99,7 @@ const unsigned int  KeyboardLayer::GetKeyboardInput()
 void KeyboardLayer::update(float delta)
 {
 	//characterManager->SetKeyboardInput(GetKeyboardInput());
-	characterManager->Update(delta);
+	characterManager->update(delta);
 }
 
 /*
