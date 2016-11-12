@@ -49,6 +49,8 @@ void Character::initOptions(const char const* filename, const char const* extent
 	m_BeforeDirection = BFE_IDCA_DEFINE::ACTIONS::NO_MOVE;
 	m_UnitVector[0] = 0;
 	m_UnitVector[1] = 0;
+	m_AttackRange.x = BFE_IDCA_DEFINE::ARCH_BISHOP_ATTACK_RANGE_X;
+	m_AttackRange.y = BFE_IDCA_DEFINE::ARCH_BISHOP_ATTACK_RANGE_Y;
 }
 //키보드 입력비트 플래그를 액션부분과,움직임부분으로 나누고 방향을 설정해 준다. 정지시에 사용할 이전 방향에 대한 처리도 같이함.
 void Character::SetInput(int inputFromScene)
@@ -232,6 +234,49 @@ void Character::MoveOn()
 void Character::StopOn()
 {
 	m_StopAnimationOn = true;
+}
+
+Vec2 Character::GetCurrentDitection()
+{
+	auto currentDirection = Vec2(0.0f, 0.0f);
+	if (m_CurDirection == BFE_IDCA_DEFINE::ACTIONS::BOTTOM)
+	{
+		currentDirection = Vec2(0.0f, -1.0f);
+	}
+	else if (m_CurDirection == BFE_IDCA_DEFINE::ACTIONS::BOTTOM_LEFT)
+	{
+		currentDirection = Vec2(-1.0f, -1.0f);
+	}
+	else if (m_CurDirection == BFE_IDCA_DEFINE::ACTIONS::BOTTOM_RIGHT)
+	{
+		currentDirection = Vec2(1.0f, -1.0f);
+	}
+	else if (m_CurDirection == BFE_IDCA_DEFINE::ACTIONS::LEFT)
+	{
+		currentDirection = Vec2(-1.0f, 0.0f);
+	}
+	else if (m_CurDirection == BFE_IDCA_DEFINE::ACTIONS::RIGHT)
+	{
+		currentDirection = Vec2(1.0f, 0.0f);
+	}
+	else if (m_CurDirection == BFE_IDCA_DEFINE::ACTIONS::TOP)
+	{
+		currentDirection = Vec2(0.0f, 1.0f);
+	}
+	else if (m_CurDirection == BFE_IDCA_DEFINE::ACTIONS::TOP_LEFT)
+	{
+		currentDirection = Vec2(-1.0f, 1.0f);
+	}
+	else if (m_CurDirection == BFE_IDCA_DEFINE::ACTIONS::TOP_RIGTH)
+	{
+		currentDirection = Vec2(1.0f, 1.0f);
+	}
+	return currentDirection;
+}
+
+Vec2 Character::GetAttackRange()
+{
+	return m_AttackRange;
 }
 
 bool Character::IsTopOn(int m_MoveInput)

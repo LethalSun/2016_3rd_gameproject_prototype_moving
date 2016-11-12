@@ -26,8 +26,16 @@ public:
 	void AttackOn();
 	void MoveOn();
 	void StopOn();
+	Vec2 GetCurrentDitection();
+	Vec2 GetAttackRange();
 private:
+<<<<<<< HEAD
 	//상태를 확인 하는함수
+=======
+	//공격범위
+	Vec2 m_AttackRange;
+	//방향을 정할때 쓰는 변수
+>>>>>>> 7ab9e4018567d5c7a764ebcbff1934aa7166a1de
 	bool IsTopOn(int m_MoveInput);
 	bool IsBottomOn(int m_MoveInput);
 	bool IsLeftOn(int m_MoveInput);

@@ -26,6 +26,10 @@ private:
 	unsigned int m_keyboardInput;
 	Character *m_pCharacter;
 	Sprite *m_pMonster;
+<<<<<<< HEAD
+=======
+	Sprite *m_pMonster1;
+>>>>>>> 7ab9e4018567d5c7a764ebcbff1934aa7166a1de
 	PrototypeScene();
 	~PrototypeScene();
 };
