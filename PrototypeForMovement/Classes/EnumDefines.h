@@ -37,7 +37,7 @@ namespace BFE_IDCA_DEFINE
 	const int NUM_OF_SPRITE_FILE_PER_ACTIONS = 10;
 	const float STOP_ANIMATION_SPEED = 0.005f;
 	const float ANIMATION_SPEED = 0.1f;
-	const float HIT_ANIMATION_SPEED = 0.1f;
+	const float HIT_ANIMATION_SPEED = 0.03f;
 	const int ATTACK_RANGE_X = 37;
 	const int ATTACK_RANGE_Y = 47;
 	extern const char *ARCH_BISHOP_FILE_NAME;
