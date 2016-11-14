@@ -28,7 +28,7 @@ bool PrototypeScene::init()
 	m_pCharacter = Character::create(BFE_IDCA_DEFINE::ARCH_BISHOP_FILE_NAME, BFE_IDCA_DEFINE::SPRITE_FRAME_FILE_EXTENTION);
 	m_pCharacter->setPosition(Vec2(100, 100));
 	addChild(m_pCharacter);
-	//몬스터 애드차일드
+	//이성경 애드차일드
 	m_pMonster = Sprite::create("lSG.png");
 	m_pMonster->setPosition(Vec2(900, 600));
 	auto action1 = MoveTo::create(20, Vec2(100, 600));
@@ -62,17 +62,16 @@ void PrototypeScene::update(float delta)
 	m_pCharacterManage->GetCharacterInfo(m_pCharacter);
 	if (m_pMonster != nullptr)
 	{
-		
 		m_pCharacterManage->GetSpriteInfo(m_pMonster);
 		bool hit = false;
-		
+
 		hit = m_pCharacterManage->GetHitInfo();
 
 		char buffer[100];
 		sprintf(buffer, "hit = %d", hit);
 		cocos2d::log(buffer);
-		
-		if ( hit == true)
+
+		if (hit == true)
 		{
 			m_pMonster->removeFromParent();
 			m_pMonster = nullptr;
