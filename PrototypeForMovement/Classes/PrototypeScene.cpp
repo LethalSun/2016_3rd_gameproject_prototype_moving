@@ -60,6 +60,8 @@ void PrototypeScene::update(float delta)
 {
 	m_pCharacter->SetInput(m_keyboardInput);
 	m_pCharacterManage->GetCharacterInfo(m_pCharacter);
+	//피격효과
+
 	if (m_pMonster != nullptr)
 	{
 		m_pCharacterManage->GetSpriteInfo(m_pMonster);
@@ -72,6 +74,12 @@ void PrototypeScene::update(float delta)
 		cocos2d::log(buffer);
 
 		if (hit == true)
+		{
+			m_pCharacter->SetHP(1);
+			//
+		}
+
+		if (m_pCharacter->GetCharacterHP() == 0)
 		{
 			m_pMonster->removeFromParent();
 			m_pMonster = nullptr;

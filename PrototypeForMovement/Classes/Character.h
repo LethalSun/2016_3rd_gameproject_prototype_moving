@@ -26,10 +26,18 @@ public:
 	void AttackOn();
 	void MoveOn();
 	void StopOn();
+	//캐릭터의 상태를 알아볼때 사용할수 있는 함수
 	Vec2 GetCurrentDitection();
 	Vec2 GetAttackRange();
 	int GetCharacterState();
+	int GetCharacterHP();
+	//캐릭터의 체력을 변경하는 함수
+	void SetHP(int hp);
+	//체력바를 만드는 함수
+	void MakeHpBar();
 private:
+	//체력
+	int m_CurHP;
 	//공격범위
 	Vec2 m_AttackRange;
 	//방향을 정할때 쓰는 변수

@@ -2,7 +2,7 @@
 #include "CharacterManage.h"
 #include "character.h"
 #include "EnumDefines.h"
-
+#define DEBUG_RED_BOX
 //Scene* CharacterManage::createScene()
 //{
 //	auto scene = Scene::create();
@@ -23,6 +23,10 @@ bool CharacterManage::init()
 	m_CharacterAttackRange = Vec2(0, 0);
 	m_TargetPosition = Vec2(0, 0);
 	m_HitHit = false;
+	m_BoxTagMonster = BFE_IDCA_DEFINE::BOX_TAG_MONSTER;
+	m_BoxTagCharacter = BFE_IDCA_DEFINE::BOX_TAG_CHARACTER;
+	m_CharacterBeforstate = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP;
+	m_CharacterState = BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_STOP;
 	scheduleUpdate();
 	return true;
 }
@@ -30,12 +34,14 @@ bool CharacterManage::init()
 void CharacterManage::update(float delta)
 {
 	char buffer[100];
-	sprintf(buffer, "state = %d", m_CharacterState);
-	cocos2d::log(buffer);
-	if (m_CharacterState == BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_ATTACK)
+	m_HitHit = false;
+	if (m_CharacterState == BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_ATTACK && m_CharacterBeforstate != BFE_IDCA_DEFINE::CHARACTER_STATE::STATE_ATTACK)
 	{
 		m_HitHit = CheckHit();
 	}
+	m_CharacterBeforstate = m_CharacterState;
+	sprintf(buffer, "state = %d beforstate = %d", m_CharacterState, m_CharacterBeforstate);
+	cocos2d::log(buffer);
 }
 
 void CharacterManage::GetCharacterInfo(Character * character)
@@ -44,8 +50,14 @@ void CharacterManage::GetCharacterInfo(Character * character)
 	m_CharacterAttackDirection = character->GetCurrentDitection();
 	m_CharacterAttackRange = character->GetAttackRange();
 	m_CharacterState = character->GetCharacterState();
+
 	m_CharacterBeAttackedBox.x = character->getContentSize().width;
 	m_CharacterBeAttackedBox.y = character->getContentSize().height;
+	auto attackAnchorPoint = AttackAnchorPoint();
+	//타격범위
+#ifdef DEBUG_RED_BOX
+	MakeRedBox(attackAnchorPoint, m_CharacterAttackRange, m_BoxTagCharacter);
+#endif // DEBUD_RED_BOX
 }
 
 void CharacterManage::GetSpriteInfo(Sprite * sprite)
@@ -56,6 +68,10 @@ void CharacterManage::GetSpriteInfo(Sprite * sprite)
 	cocos2d::log(buffer);
 	m_TargetBeAttackefBox.x = sprite->getContentSize().width;
 	m_TargetBeAttackefBox.y = sprite->getContentSize().height;
+	//피격범위
+#ifdef DEBUG_RED_BOX
+	MakeRedBox(m_TargetPosition, m_TargetBeAttackefBox, m_BoxTagMonster);
+#endif // DEBUD_RED_BOX
 }
 
 bool CharacterManage::CheckHit()
@@ -86,18 +102,33 @@ bool CharacterManage::GetHitInfo()
 	return result;
 }
 
+void CharacterManage::MakeRedBox(Vec2 position, Vec2 boxInfo, int tag)
+{
+	if (getChildByTag(tag) != nullptr)
+	{
+		removeChildByTag(tag);
+	}
+	Vec2 vertex[4] = { Vec2(position.x - boxInfo.x / 2,position.y - boxInfo.y / 2),
+		Vec2(position.x + boxInfo.x / 2,position.y + boxInfo.y / 2) };
+	auto box = DrawNode::create();
+	box->drawRect(vertex[0], vertex[1], Color4F(1.0f, 0.0f, 0.0f, 1.0f));
+	addChild(box, 0, tag);
+}
+
 Vec2 CharacterManage::Distance(Vec2 a, Vec2 b)
 {
 	auto x = ((a.x - b.x) < 0) ? -(a.x - b.x) : (a.x - b.x);
 	auto y = ((a.y - b.y) < 0) ? -(a.y - b.y) : (a.y - b.y);
-	return Vec2(x,y);
+	return Vec2(x, y);
 }
 
 Vec2 CharacterManage::AttackAnchorPoint()
 {
+	//대충만든 공격범위의 중심 수정이 필요할것같음.
 	auto x = m_CharacterPosition.x +
-		m_CharacterAttackDirection.x*(m_CharacterBeAttackedBox.x / 2 + m_CharacterAttackRange.x / 2);
-	auto y = m_CharacterPosition.y;
-		   
-	return Vec2(x,y);
+		m_CharacterAttackDirection.x*(m_CharacterBeAttackedBox.x / 2 + m_CharacterAttackRange.x / 2)*0.5;
+	auto y = m_CharacterPosition.y +
+		m_CharacterAttackDirection.y*(m_CharacterBeAttackedBox.y / 2 + m_CharacterAttackRange.y / 2)*0.5;
+
+	return Vec2(x, y);
 }

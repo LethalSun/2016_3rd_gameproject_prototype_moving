@@ -51,6 +51,8 @@ void Character::initOptions(const char const* filename, const char const* extent
 	m_UnitVector[1] = 0;
 	m_AttackRange.x = BFE_IDCA_DEFINE::ARCH_BISHOP_ATTACK_RANGE_X;
 	m_AttackRange.y = BFE_IDCA_DEFINE::ARCH_BISHOP_ATTACK_RANGE_Y;
+	//체력 초기화
+	m_CurHP = BFE_IDCA_DEFINE::MAX_HP;
 }
 //키보드 입력비트 플래그를 액션부분과,움직임부분으로 나누고 방향을 설정해 준다. 정지시에 사용할 이전 방향에 대한 처리도 같이함.
 void Character::SetInput(int inputFromScene)
@@ -193,6 +195,7 @@ void Character::update(float dt)
 		Stop(dt);
 		m_BeforeState = m_State;
 	}
+	MakeHpBar();
 }
 //스프라이트 캐쉬에 이미지를 올린다.
 void Character::AddSpriteFramesWithFile(const char * filename)
@@ -275,6 +278,30 @@ Vec2 Character::GetAttackRange()
 int Character::GetCharacterState()
 {
 	return m_State;
+}
+
+int Character::GetCharacterHP()
+{
+	return m_CurHP;
+}
+
+void Character::SetHP(int dHp)
+{
+	m_CurHP -= dHp;
+}
+
+void Character::MakeHpBar()
+{
+	auto anchorPoint = getAnchorPoint();
+	auto hpBarBottomLeftVertex = Vec2(anchorPoint.x + getContentSize().width / 2 - BFE_IDCA_DEFINE::MAX_HP * 10 / 2, anchorPoint.y - 5);
+	auto hpBarTopRightVertex = Vec2(hpBarBottomLeftVertex.x + (m_CurHP * 10), anchorPoint.y);
+	if (getChildByTag(1) != nullptr)
+	{
+		removeChildByTag(1);
+	}
+	auto box = DrawNode::create();
+	box->drawRect(hpBarBottomLeftVertex, hpBarTopRightVertex, Color4F(1.0f, 0.0f, 0.0f, 1.0f));
+	addChild(box, 0, 1);
 }
 
 bool Character::IsTopOn(int m_MoveInput)
