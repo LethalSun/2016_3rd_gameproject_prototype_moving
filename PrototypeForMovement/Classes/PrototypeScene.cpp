@@ -79,7 +79,7 @@ void PrototypeScene::update(float delta)
 			//
 		}
 
-		if (m_pCharacter->GetCharacterHP() == 0)
+		if (m_pCharacter->GetCharacterHP() == 0)//작거나 같다로해야함 만약에 데미지를 크게 입어서 음수가 되면?
 		{
 			m_pMonster->removeFromParent();
 			m_pMonster = nullptr;
